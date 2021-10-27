@@ -4,6 +4,7 @@ import {
   StyleSheet,
   View,
   Image,
+  SafeAreaView,
   Text,
   PickerIOSComponent,
 } from "react-native";
@@ -13,11 +14,12 @@ import colors from "../config/colors";
 function WelcomeScreen(props) {
   return (
     <>
-      <ImageBackground
-        style={styles.background}
-        //source={{ uri: "https://picsum.photos/id/209/500/700" }}
-        source={{ uri: "https://picsum.photos/id/22/500/700" }}
-      >
+      <SafeAreaView>
+        {/*  <ImageBackground
+          style={styles.background}
+          //source={{ uri: "https://picsum.photos/id/209/500/700" }}
+          source={{ uri: "https://picsum.photos/id/22/500/700" }}
+        > */}
         <View style={styles.welcomeContainer}>
           <Image
             style={styles.logo}
@@ -30,7 +32,14 @@ function WelcomeScreen(props) {
             </Text>
           </View>
         </View>
-      </ImageBackground>
+        {/* </ImageBackground> */}
+
+        <View style={styles.h3TitleTexteContainer}>
+          <Text style={styles.h3TitleText}>
+            Eine Einkaufsliste mit Standorterkennung
+          </Text>
+        </View>
+      </SafeAreaView>
     </>
   );
 }

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import BasicScreen from "./app/screens/BasicScreen";
 
 export default function App() {
-  return <BasicScreen />;
+  return <BasicScreen> </BasicScreen>;
 }
 
 const styles = StyleSheet.create({

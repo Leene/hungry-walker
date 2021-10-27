@@ -32,9 +32,11 @@ function BasicScreen(props) {
       </View>
 
       <View style={styles.mainContainer}>
-        <WelcomeScreen />
+        {/*         <WelcomeScreen></WelcomeScreen>
+         */}
       </View>
 
+      <View style={styles.addButton}></View>
       <View style={styles.loginButton}></View>
       <View style={styles.registerButton}></View>
     </>
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
   h1Title: {
     fontSize: 20,
     fontWeight: "bold",
-    color: colors.secondary,
+    color: colors.primary,
     borderWidth: 2,
     borderColor: "greenyellow",
     textTransform: "uppercase",
@@ -108,6 +110,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 70,
     backgroundColor: colors.secondary,
+  },
+
+  addButton: {
+    width: "100%",
+    height: 70,
+    backgroundColor: colors.violet,
   },
 });
 export default BasicScreen;
