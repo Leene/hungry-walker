@@ -11,35 +11,26 @@ import {
 
 import colors from "../config/colors";
 
-function WelcomeScreen(props) {
+function WelcomeScreen() {
   return (
     <>
-      <SafeAreaView>
-        {/*  <ImageBackground
+      {/*  <ImageBackground
           style={styles.background}
           //source={{ uri: "https://picsum.photos/id/209/500/700" }}
           source={{ uri: "https://picsum.photos/id/22/500/700" }}
         > */}
-        <View style={styles.welcomeContainer}>
-          <Image
-            style={styles.logo}
-            source={{ uri: "https://img.icons8.com/nolan/128/ok.png" }}
-          />
-          <Text style={styles.h2TitleText}>Hungry Walker</Text>
-          <View style={styles.h3TitleTexteContainer}>
-            <Text style={styles.h3TitleText}>
-              Eine Einkaufsliste mit Standorterkennung
-            </Text>
-          </View>
-        </View>
-        {/* </ImageBackground> */}
-
+      <View style={styles.welcomeContainer}>
+        <Image
+          style={styles.logo}
+          source={{ uri: "https://img.icons8.com/nolan/128/ok.png" }}
+        />
+        <Text style={styles.h2TitleText}>Hungry Walker</Text>
         <View style={styles.h3TitleTexteContainer}>
           <Text style={styles.h3TitleText}>
             Eine Einkaufsliste mit Standorterkennung
           </Text>
         </View>
-      </SafeAreaView>
+      </View>
     </>
   );
 }

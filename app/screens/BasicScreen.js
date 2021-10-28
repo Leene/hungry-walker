@@ -5,117 +5,50 @@ import {
   View,
   Image,
   Text,
+  SafeAreaView,
   PickerIOSComponent,
 } from "react-native";
 import WelcomeScreen from "./WelcomeScreen";
+import Header from "./Header";
+import Navigation from "./Navigation";
 
 import colors from "../config/colors";
 
-function BasicScreen(props) {
+export default function BasicScreen() {
   return (
-    <>
-      <View style={styles.headerContainer}>
-        <View style={styles.header}>
-          <View style={styles.row}>
-            <Image
-              style={styles.headerLogo}
-              source={{
-                uri: "https://img.icons8.com/ios-filled/100/777777/hungry.png",
-              }}
-            />
-            <Text style={styles.h1Title}>Hungry Walker</Text>
-          </View>
-        </View>
-      </View>
+    <SafeAreaView style={styles.container}>
+      <Header />
       <View style={styles.navigation}>
-        <Text>Navigation</Text>
+        <Navigation />
+      </View>
+      <View style={styles.main}>
+        <WelcomeScreen />
       </View>
 
-      <View style={styles.mainContainer}>
-        {/*         <WelcomeScreen></WelcomeScreen>
-         */}
-      </View>
-
-      <View style={styles.addButton}></View>
-      <View style={styles.loginButton}></View>
-      <View style={styles.registerButton}></View>
-    </>
+      <View style={styles.addButton}>+</View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  headerContainer: {
-    flex: 0.05,
-    borderWidth: 2,
-    borderColor: "orange",
-  },
-  row: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    borderWidth: 2,
-    borderColor: "pink",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  header: {
-    justifyContent: "flex-end",
+  container: {
+    height: "100%",
     alignItems: "center",
   },
 
-  headerLogo: {
-    width: 30,
-    height: 30,
-  },
-  h1Title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: colors.primary,
-    borderWidth: 2,
-    borderColor: "greenyellow",
-    textTransform: "uppercase",
+  main: {
+    flex: 2,
   },
 
   navigation: {
-    flex: 0.1,
-
-    borderWidth: 2,
-    borderColor: "greenyellow",
-  },
-
-  loginButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.primary,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-  },
-  mainContainer: {
-    flex: 1,
-    width: "100%",
-    // position: "absolute",
-    //top: 70,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: 2,
-    borderColor: "red",
-  },
-  registerButton: {
-    width: "100%",
-    height: 70,
-    backgroundColor: colors.secondary,
+    flex: 0.5,
   },
 
   addButton: {
-    width: "100%",
-    height: 70,
+    width: 100,
+    height: 100,
     backgroundColor: colors.violet,
+    fontSize: 30,
+    fontWeight: "bold",
   },
 });
-export default BasicScreen;

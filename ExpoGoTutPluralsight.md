@@ -349,22 +349,22 @@ import * as RootNavigation from "./RootNavigation";
 
 export default function Footer() {
   return (
-    <View style={StyleSheet.footer}>
-      <TouchableOpacitiy
-        style={StyleSheet.button}
+    <View style={styles.footer}>
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => RootNavigation.navigate("Globomantics")}
       >
         <Text>Home</Text>
-      </TouchableOpacitiy>
-      <TouchableOpacitiy style={StyleSheet.button}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
         <Text>About</Text>
-      </TouchableOpacitiy>
-      <TouchableOpacitiy style={StyleSheet.button}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
         <Text>Quote</Text>
-      </TouchableOpacitiy>
-      <TouchableOpacitiy style={StyleSheet.button}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button}>
         <Text>Catalog</Text>
-      </TouchableOpacitiy>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -516,38 +516,188 @@ const styles = StyleSheet.create({
     height: 100,
     width: "98%",
   },
-/*NEU*/ listings:{
-  paddingTop: 15,
-  paddingBottom: 25,
-  borderBottomColor: "black",
-  borderBottomWidth: 1,
-},
-
-/*NEU*/ title:{
-  paddingBottom: 10,
-  fontFamily: "OpenSans",
-  fontWeight: "bold",
-},
-
-
-/*NEU*/ blurb:{
-  fontFamily: "OpenSans",
-  fontStyle: "italic",
-},
-
-
+  /*NEU*/ listings:{
+    paddingTop: 15,
+    paddingBottom: 25,
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+  },
+  /*NEU*/ title:{
+    paddingBottom: 10,
+    fontFamily: "OpenSans",
+    fontWeight: "bold",
+  },
+  /*NEU*/ blurb:{
+    fontFamily: "OpenSans",
+    fontStyle: "italic",
+  },
 });
-
 ```
 Zwischenstand der App: <br>
 <img src="./md_images/Screenshot_SetupHomePage.png">
 
 ## 11. News Detail Page einrichten
-**+++.js**
+**NewsDetail.js**
 
 ```javascript
+import React, { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ActivityIndicator,
+  Image,
+  ScrollView,
+} from "react-native";
+
+export default function NewsDetail(route, navigation) {
+  const [dataLoading, finishLoading] = useState(true);
+  const [allPostData, setAllPostData] = useState([]);
+  const { url } = route.params;
+  const selectedPost = allPostData.find((post) => post.url === url);
+
+  useEffect(() => {
+    fetch(
+      "https://newsapi.org/v2/everything?q=tech&apiKey=55afeca5a50648b1a6ab1ce4b92a2665"
+    )
+      .then((response) => response.json())
+      .then((json) => setAllPostData(json.articles))
+      .catch((error) => console.error(error))
+      .finally(() => finishLoading(false));
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.goBack()}
+      >
+        <Text style={styles.buttontext}>Go Back</Text>
+      </TouchableOpacity>
+      {dataLoading ? (
+        <ActivityIndicator />
+      ) : (
+        <ScrollView>
+          <Text style={styles.title}>{selectedPost.title}</Text>
+          <Image
+            style={styles.storyimage}
+            source={{ uri: selectedPost.urlToImage }}
+          />
+          <Text style={styles.blurb}>{selectedPost.discription}</Text>
+          <Text style={styles.content}>{selectedPost.content}</Text>
+        </ScrollView>
+      )}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    alignItems: "center",
+  },
+  button: {
+    padding: 20,
+    alignItems: "flex-start",
+    justifyContent: "center",
+  },
+  buttontext: {
+    fontFamily: "OpenSans",
+    fontWeight: "bold",
+  },
+  storyimage: {
+    height: 300,
+    width: "100%",
+  },
+  title: {
+    fontFamily: "OpenSans",
+    fontWeight: "bold",
+    fontSize: 20,
+    padding: 20,
+  },
+  blurb: {
+    fontFamily: "OpenSans",
+    fontSize: 14,
+    padding: 20,
+    fontStyle: "italic",
+  },
+  content: {
+    fontFamily: "OpenSans",
+    fontSize: 16,
+    padding: "30 20 100 20",
+  },
+});
+
 
 ```
+> NewsDetail.js in App.js importieren: 
+
+**App.js**
+
+```javascript
+import "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Homepage from "./Home";
+
+import { Platform } from "react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+import Header from "./Header";
+import Footer from "./Footer";
+import { navigationRef } from "./RootNavigation";
+/*Neu*/ import NewsDetail from "./NewsDetail";
+
+const Stack = createStackNavigator();
+
+export default function App() {
+  let [fontsLoaded] = useFonts({
+    OpenSans: require("./assets/fonts/OpenSans-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <>
+        <NavigationContainer
+          style={{
+            paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+          }}
+          ref={navigationRef}
+        >
+          <Stack.Navigator initialRouteName="Globomantics" headerMode="screen">
+            <Stack.Screen
+              name="Globomantics"
+              component={Homepage}
+              options={{
+                header: () => <Header headerDisplay="Globomantics" />,
+              }}
+            />
+            {/*Neu >>> */}
+            <Stack.Screen
+              name="NewsDetail"
+              component={NewsDetail}
+              options={{
+                header: () => <Header headerDisplay="News" />,
+              }}
+            />
+            {/* <<< */}
+          </Stack.Navigator>
+          <Footer />
+        </NavigationContainer>
+      </>
+    );
+  }
+}
+
+```
+Zwischenstand der App : <br>
+<img src="./md_images/Screenshot_SetupHomePage.png">
+
 
 ## 12. About einrichten
 **+++.js**
