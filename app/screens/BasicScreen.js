@@ -6,8 +6,6 @@ import {
   Image,
   Platform,
   Text,
-  SafeAreaView,
-  PickerIOSComponent,
   StatusBar,
   FlatList,
 } from "react-native";
@@ -16,6 +14,7 @@ import Welcome from "./Welcome";
 import Header from "./Header";
 import Navigation from "./Navigation";
 import ToDoItem from "./ToDoItem";
+import AddProduct from "./AddProduct";
 
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -25,8 +24,20 @@ export default function BasicScreen() {
     { text: "kaufe Oliven", key: "1" },
     { text: "Programmiere fleißig", key: "2" },
     { text: "trinke einen Tee", key: "3" },
+    { text: "gddgg ", key: "4" },
   ]);
 
+  const pressHandler = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.key != key);
+    });
+  };
+
+  const submitHandler = (text) => {
+    setTodos((prevTodos) => {
+      return [{ text: text, key: Math.random().toString() }, ...prevTodos];
+    });
+  };
   return (
     <>
       <View style={styles.container}>
@@ -38,11 +49,13 @@ export default function BasicScreen() {
         </View>
         <View style={styles.main}>
           <Text>Meine Einkaufsliste </Text>
+          <AddProduct submitHandler={submitHandler} />
           <View style={styles.list}>
             <FlatList
               data={todos}
-              /*               renderItem={({ item }) => <Text>{item.text}</Text>}*/
-              renderItem={({ item }) => <ToDoItem item={item} />}
+              renderItem={({ item }) => (
+                <ToDoItem item={item} pressHandler={pressHandler} />
+              )}
             />
           </View>
         </View>
@@ -82,6 +95,7 @@ const styles = StyleSheet.create({
     flex: 5,
     backgroundColor: "yellow",
     width: vw(100),
+    alignItems: "center",
   },
 
   bottomNav: {
