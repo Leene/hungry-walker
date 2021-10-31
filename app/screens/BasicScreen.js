@@ -1,54 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
   View,
   Image,
+  Platform,
   Text,
   SafeAreaView,
   PickerIOSComponent,
+  StatusBar,
+  FlatList,
 } from "react-native";
 import WelcomeScreen from "./WelcomeScreen";
+import Welcome from "./Welcome";
 import Header from "./Header";
 import Navigation from "./Navigation";
+import ToDoItem from "./ToDoItem";
 
 import colors from "../config/colors";
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
 export default function BasicScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Header />
-      <View style={styles.navigation}>
-        <Navigation />
-      </View>
-      <View style={styles.main}>
-        <WelcomeScreen />
-      </View>
+  const [todos, setTodos] = useState([
+    { text: "kaufe Oliven", key: "1" },
+    { text: "Programmiere fleißig", key: "2" },
+    { text: "trinke einen Tee", key: "3" },
+  ]);
 
-      <View style={styles.addButton}>+</View>
-    </SafeAreaView>
+  return (
+    <>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Header />
+        </View>
+        <View style={styles.navigation}>
+          <Text>navi </Text>
+        </View>
+        <View style={styles.main}>
+          <Text>Meine Einkaufsliste </Text>
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              /*               renderItem={({ item }) => <Text>{item.text}</Text>}*/
+              renderItem={({ item }) => <ToDoItem item={item} />}
+            />
+          </View>
+        </View>
+        <View style={styles.bottomNav}>
+          <View style={styles.addButton}>
+            <Text style={styles.addButtonText}>+</Text>
+          </View>
+        </View>
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    height:
+      Platform.OS === "android" ? vh(100) - StatusBar.currentHeight : vh(100),
+
+    flexDirection: "column",
     alignItems: "center",
+    borderWidth: 5,
+    borderColor: "orange",
   },
 
-  main: {
-    flex: 2,
+  list: {
+    backgroundColor: "white",
+    width: vw(80),
+    margin: 20,
+    padding: 10,
   },
-
   navigation: {
     flex: 0.5,
+    backgroundColor: "lightgreen",
+    width: vw(100),
+  },
+  main: {
+    flex: 5,
+    backgroundColor: "yellow",
+    width: vw(100),
+  },
+
+  bottomNav: {
+    //flex: 1,
+    backgroundColor: "red",
+    width: vw(100),
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
   },
 
   addButton: {
-    width: 100,
-    height: 100,
     backgroundColor: colors.violet,
-    fontSize: 30,
+
+    borderTopLeftRadius: 50,
+    width: vw(20),
+  },
+  addButtonText: {
+    fontSize: 50,
     fontWeight: "bold",
   },
 });

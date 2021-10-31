@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import colors from "../config/colors";
+import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
 export default function Header() {
   return (
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  headerContainer: {},
   header: {
     justifyContent: "flex-end",
     alignItems: "center",

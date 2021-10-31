@@ -1,8 +1,22 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Platform,
+  StatusBar,
+} from "react-native";
 import BasicScreen from "./app/screens/BasicScreen";
 
 export default function App() {
-  return <BasicScreen> </BasicScreen>;
+  return (
+    <SafeAreaView
+      style={{
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+      }}
+    >
+      <BasicScreen />
+    </SafeAreaView>
+  );
 }
