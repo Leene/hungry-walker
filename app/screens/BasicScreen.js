@@ -15,6 +15,7 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 import ToDoItem from "./ToDoItem";
 import AddProduct from "./AddProduct";
+import AddProduct2 from "./AddProduct2";
 
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -49,7 +50,7 @@ export default function BasicScreen() {
         </View>
         <View style={styles.main}>
           <Text>Meine Einkaufsliste </Text>
-          <AddProduct submitHandler={submitHandler} />
+          <AddProduct2 submitHandler={submitHandler} />
           <View style={styles.list}>
             <FlatList
               data={todos}
@@ -60,6 +61,7 @@ export default function BasicScreen() {
           </View>
         </View>
         <View style={styles.bottomNav}>
+          <AddProduct submitHandler={submitHandler} />
           <View style={styles.addButton}>
             <Text style={styles.addButtonText}>+</Text>
           </View>

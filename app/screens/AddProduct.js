@@ -6,7 +6,9 @@ import {
   Button,
   View,
   TextInput,
+  Pressable,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
 export default function AddProduct({ submitHandler }) {
@@ -17,20 +19,18 @@ export default function AddProduct({ submitHandler }) {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.input}
-        placeholder="Neuer Eintrag ..."
-        onChangeText={changeHandler}
-      />
-      {/*       <Button onPress={() => console.log(text)} title="add Todo" color="" />
-       */}
-      <Button
-        onPress={() => submitHandler(text)}
-        title="add Todo"
-        color="coral"
-      />
-    </View>
+    <KeyboardAwareScrollView behavior="paddingd">
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Neuer Eintrag ..."
+          onChangeText={changeHandler}
+        />
+        <Pressable style={styles.addButton} onPress={() => submitHandler(text)}>
+          <Text style={styles.addButtonText}>+</Text>
+        </Pressable>
+      </View>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -49,5 +49,21 @@ const styles = StyleSheet.create({
     borderColor: "coral",
     alignItems: "center",
     width: "80%",
+  },
+
+  addButton: {
+    height: 90,
+    width: 90,
+
+    borderTopLeftRadius: 80,
+    backgroundColor: "pink",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  addButtonText: {
+    fontSize: 50,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "black",
   },
 });
