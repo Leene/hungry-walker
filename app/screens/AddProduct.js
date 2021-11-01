@@ -12,11 +12,11 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
-export default function AddProduct({ submitHandler }) {
-  const [text, setText] = useState("");
+export default function AddProduct({ submitHandler, inputText, setInputText }) {
+  //const [text, setText] = useState("");
 
   const changeHandler = (val) => {
-    setText(val);
+    setInputText(val);
   };
 
   return (
@@ -25,8 +25,12 @@ export default function AddProduct({ submitHandler }) {
         style={styles.input}
         placeholder="Neuer Eintrag ..."
         onChangeText={changeHandler}
+        value={inputText}
       />
-      <Pressable style={styles.addButton} onPress={() => submitHandler(text)}>
+      <Pressable
+        style={styles.addButton}
+        onPress={() => submitHandler(inputText)}
+      >
         <Text style={styles.addButtonText}>+</Text>
       </Pressable>
     </View>

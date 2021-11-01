@@ -28,6 +28,8 @@ export default function BasicScreen() {
     { text: "gddgg ", key: "4" },
   ]);
 
+  const [inputText, setInputText] = useState("");
+
   const pressHandler = (key) => {
     setTodos((prevTodos) => {
       return prevTodos.filter((todo) => todo.key != key);
@@ -35,6 +37,7 @@ export default function BasicScreen() {
   };
 
   const submitHandler = (text) => {
+    setInputText("");
     setTodos((prevTodos) => {
       return [{ text: text, key: Math.random().toString() }, ...prevTodos];
     });
@@ -66,7 +69,11 @@ export default function BasicScreen() {
           </View>
 
           <View style={styles.bottomNav}>
-            <AddProduct submitHandler={submitHandler} />
+            <AddProduct
+              submitHandler={submitHandler}
+              inputText={inputText}
+              setInputText={setInputText}
+            />
           </View>
         </KeyboardAvoidingView>
       </View>
@@ -87,7 +94,7 @@ const styles = StyleSheet.create({
 
   list: {
     backgroundColor: "white",
-    width: vw(80),
+    width: vw(90),
     margin: 20,
     padding: 10,
   },
