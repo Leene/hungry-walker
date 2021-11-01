@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
   Pressable,
+  KeyboardAvoidingView,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -19,22 +20,28 @@ export default function AddProduct({ submitHandler }) {
   };
 
   return (
-    <KeyboardAwareScrollView behavior="paddingd">
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          placeholder="Neuer Eintrag ..."
-          onChangeText={changeHandler}
-        />
-        <Pressable style={styles.addButton} onPress={() => submitHandler(text)}>
-          <Text style={styles.addButtonText}>+</Text>
-        </Pressable>
-      </View>
-    </KeyboardAwareScrollView>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Neuer Eintrag ..."
+        onChangeText={changeHandler}
+      />
+      <Pressable style={styles.addButton} onPress={() => submitHandler(text)}>
+        <Text style={styles.addButtonText}>+</Text>
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  inputContainer: {
+    borderWidth: 2,
+    //borderColor: "coral",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    width: vw(100),
+    flexDirection: "row",
+  },
   input: {
     marginBottom: 10,
     paddingHorizontal: 8,
@@ -42,19 +49,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
     backgroundColor: "pink",
-    width: "100%",
-  },
-  inputContainer: {
-    borderWidth: 2,
-    borderColor: "coral",
-    alignItems: "center",
-    width: "80%",
+    width: vw(90),
   },
 
   addButton: {
     height: 90,
     width: 90,
-
+    marginTop: -30,
+    marginLeft: -50,
     borderTopLeftRadius: 80,
     backgroundColor: "pink",
     alignItems: "center",

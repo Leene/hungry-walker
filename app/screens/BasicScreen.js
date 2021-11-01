@@ -8,6 +8,7 @@ import {
   Text,
   StatusBar,
   FlatList,
+  KeyboardAvoidingView,
 } from "react-native";
 import WelcomeScreen from "./WelcomeScreen";
 import Welcome from "./Welcome";
@@ -15,7 +16,6 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 import ToDoItem from "./ToDoItem";
 import AddProduct from "./AddProduct";
-import AddProduct2 from "./AddProduct2";
 
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -45,27 +45,30 @@ export default function BasicScreen() {
         <View style={styles.header}>
           <Header />
         </View>
-        <View style={styles.navigation}>
-          <Text>navi </Text>
-        </View>
-        <View style={styles.main}>
-          <Text>Meine Einkaufsliste </Text>
-          <AddProduct2 submitHandler={submitHandler} />
-          <View style={styles.list}>
-            <FlatList
-              data={todos}
-              renderItem={({ item }) => (
-                <ToDoItem item={item} pressHandler={pressHandler} />
-              )}
-            />
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.container}
+        >
+          <View style={styles.navigation}>
+            <Text>navi </Text>
           </View>
-        </View>
-        <View style={styles.bottomNav}>
-          <AddProduct submitHandler={submitHandler} />
-          <View style={styles.addButton}>
-            <Text style={styles.addButtonText}>+</Text>
+
+          <View style={styles.main}>
+            <Text>Meine Einkaufsliste </Text>
+            <View style={styles.list}>
+              <FlatList
+                data={todos}
+                renderItem={({ item }) => (
+                  <ToDoItem item={item} pressHandler={pressHandler} />
+                )}
+              />
+            </View>
           </View>
-        </View>
+
+          <View style={styles.bottomNav}>
+            <AddProduct submitHandler={submitHandler} />
+          </View>
+        </KeyboardAvoidingView>
       </View>
     </>
   );
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   navigation: {
-    flex: 0.5,
+    height: 50,
     backgroundColor: "lightgreen",
     width: vw(100),
   },
@@ -101,21 +104,9 @@ const styles = StyleSheet.create({
   },
 
   bottomNav: {
-    //flex: 1,
-    backgroundColor: "red",
+    flex: 1,
     width: vw(100),
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
-  },
-
-  addButton: {
-    backgroundColor: colors.violet,
-
-    borderTopLeftRadius: 50,
-    width: vw(20),
-  },
-  addButtonText: {
-    fontSize: 50,
-    fontWeight: "bold",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
