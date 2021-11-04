@@ -3,4 +3,5 @@ export default {
   secondary: "#4ecdc4",
   light: "#ffffff",
   violet: "#ff00ff",
+  mainBackground: "#999",
 };

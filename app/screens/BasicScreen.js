@@ -97,6 +97,14 @@ const styles = StyleSheet.create({
     width: vw(90),
     margin: 20,
     padding: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation: 5,
   },
   navigation: {
     height: 50,
@@ -104,16 +112,21 @@ const styles = StyleSheet.create({
     width: vw(100),
   },
   main: {
-    flex: 5,
-    backgroundColor: "yellow",
+    //flex: 1,
+    height: "75%",
+    backgroundColor: colors.mainBackground,
     width: vw(100),
     alignItems: "center",
   },
 
   bottomNav: {
-    flex: 1,
+    position: "absolute",
+    bottom: 0,
+    //flex: 1,
+    height: "20%",
     width: vw(100),
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: colors.mainBackground,
   },
 });
