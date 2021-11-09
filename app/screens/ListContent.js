@@ -19,6 +19,7 @@ import Navigation from "./Navigation";
 import ListDetailItem from "./ListDetailItem";
 import ListItem from "./ListItem";
 import AddProductForm from "./AddProductForm";
+import AddListItemForm from "./AddListItemForm";
 
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -65,13 +66,13 @@ export default function ListContent({ headline, setHeadline }) {
               data={todos}
               renderItem={({ item }) => (
                 /*  <ListDetailItem item={item} pressHandler={pressHandler} /> */
-                <ListItem item={item} />
+                <ListItem item={item} pressHandler={pressHandler} />
               )}
             />
           </View>
         </View>
         <View style={styles.bottomNav}>
-          <AddProductForm
+          <AddListItemForm
             submitHandler={submitHandler}
             inputText={inputText}
             setInputText={setInputText}

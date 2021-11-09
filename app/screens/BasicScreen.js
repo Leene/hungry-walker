@@ -65,7 +65,7 @@ export default function BasicScreen() {
               <Text style={styles.addButtonText}>+</Text>
             </Pressable>
           </View>
-          {/*   <ListDetailContent
+          {/* <ListDetailContent
             headline={"Lebensmittel"}
             setHeadline={setHeadline}
           /> */}

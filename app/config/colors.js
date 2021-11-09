@@ -7,7 +7,8 @@ export default {
 
   light: "#ffffff",
   violet: "#ff00ff",
-  mainBackground: "#fcf6ed",
+
+  mainBackground: "#fcf6ed", // Dunkelbraun: rgb: 51, 42, 30
   headerBackground: "#332a1e",
   buttonIcon: "#332a1e",
   //headlineBackground: "#ad94df",

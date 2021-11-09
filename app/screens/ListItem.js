@@ -23,16 +23,26 @@ import AddProductForm from "./AddProductForm";
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
-//export default function ListItem({ item, pressHandler }) {
-export default function ListItem({ item }) {
+export default function ListItem({ item, pressHandler }) {
+  //export default function ListItem({ item }) {
   const productAmount = 11;
 
   //const { item, pressHandler } = props;
   return (
-    //<TouchableOpacity onPress={() => pressHandler(item.key)}>
     <View>
       {/* <TouchableOpacity> */}
       <View style={styles.container}>
+        <TouchableOpacity onPress={() => pressHandler(item.key)}>
+          <View style={styles.imgDeleteContainer}>
+            <Image
+              style={styles.imgDelete}
+              source={{
+                //uri: "https://img.icons8.com/material-rounded/96/332a1e/delete-forever.png",
+                uri: "https://img.icons8.com/material-rounded/96/ffffff/delete-forever.png",
+              }}
+            />
+          </View>
+        </TouchableOpacity>
         {/*   <Text style={styles.item}>{item.text}</Text> */}
         <View style={styles.containerText}>
           <Text style={styles.itemHeadline}>{item.text}</Text>
@@ -40,6 +50,7 @@ export default function ListItem({ item }) {
             {productAmount} Eintrag/-träge
           </Text>
         </View>
+
         <Image
           style={styles.img}
           source={{
@@ -47,7 +58,6 @@ export default function ListItem({ item }) {
           }}
         />
       </View>
-      {/*  </TouchableOpacity> */}
     </View>
   );
 }
@@ -78,6 +88,16 @@ const styles = StyleSheet.create({
   img: {
     height: 150,
     width: 150,
+  },
+  imgDeleteContainer: {
+    padding: 8,
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    backgroundColor: "rgba(51, 42, 30, 0.5)",
+    borderBottomRightRadius: 15,
+  },
+  imgDelete: {
+    height: 25,
+    width: 25,
   },
   itemHeadline: {
     fontSize: 40,
