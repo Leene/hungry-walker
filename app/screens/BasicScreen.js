@@ -15,9 +15,9 @@ import WelcomeScreen from "./WelcomeScreen";
 import Welcome from "./Welcome";
 import Header from "./Header";
 import Navigation from "./Navigation";
-import ToDoItem from "./ToDoItem";
 
 import ListDetailContent from "./ListDetailContent";
+import ListContent from "./ListContent";
 
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -65,10 +65,11 @@ export default function BasicScreen() {
               <Text style={styles.addButtonText}>+</Text>
             </Pressable>
           </View>
-          <ListDetailContent
+          {/*   <ListDetailContent
             headline={"Lebensmittel"}
             setHeadline={setHeadline}
-          />
+          /> */}
+          <ListContent headline={"Alle Listen"} setHeadline={setHeadline} />
         </KeyboardAvoidingView>
       </View>
     </>
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   headlineText: {
-    fontSize: 40,
+    fontSize: 35,
     fontWeight: "100",
     color: colors.light,
     textTransform: "uppercase",
@@ -120,6 +121,7 @@ const styles = StyleSheet.create({
     //marginTop: -50,
     //marginLeft: -50,
     //marginBottom: -5,
+    paddingLeft: 20,
     borderTopLeftRadius: 80,
     backgroundColor: colors.addButtonColor,
     alignItems: "center",

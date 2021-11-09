@@ -21,6 +21,10 @@ export default {
   ListDetailItemColor: "rgba(171, 166, 159, 0.2)",
   inputButtonColor: "rgba(171, 166, 159, 1.0)",
 
+  // helles Violet #ad94df
+  listItemColor: "rgba(173, 148, 223, 1.0)",
+
+  // helles Violet #ad94df
   // warmes Grau: #aba69f
   //flieder: #ad94df
   //lachs: #f6c3a6
