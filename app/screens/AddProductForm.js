@@ -12,7 +12,11 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
-export default function AddProduct({ submitHandler, inputText, setInputText }) {
+export default function AddProductForm({
+  submitHandler,
+  inputText,
+  setInputText,
+}) {
   const changeHandler = (val) => {
     setInputText(val);
   };
@@ -41,6 +45,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: vw(100),
     flexDirection: "row",
+    borderWidth: 2,
+    borderColor: "orange",
   },
   input: {
     marginBottom: 10,

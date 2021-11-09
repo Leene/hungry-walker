@@ -11,7 +11,7 @@ export default function Header() {
           <Image
             style={styles.headerLogo}
             source={{
-              uri: "https://img.icons8.com/ios-filled/100/777777/hungry.png",
+              uri: "https://img.icons8.com/ios-filled/100/ffffff/hungry.png",
             }}
           />
           <Text style={styles.h1Title}>Hungry Walker</Text>
@@ -25,27 +25,31 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     flexWrap: "wrap",
-    borderWidth: 2,
-    borderColor: "pink",
     justifyContent: "center",
     alignItems: "center",
   },
-  headerContainer: {},
+  headerContainer: {
+    //backgroundColor: colors.light,
+    backgroundColor: colors.headerBackground,
+    width: vw(100),
+  },
   header: {
-    justifyContent: "flex-end",
+    justifyContent: "center",
     alignItems: "center",
+    height: 40,
   },
 
   headerLogo: {
     width: 30,
     height: 30,
+    marginRight: 8,
   },
   h1Title: {
-    fontSize: 20,
+    fontSize: 22,
+    //fontWeight: "bold",
     fontWeight: "bold",
-    color: colors.primary,
-    borderWidth: 2,
-    borderColor: "greenyellow",
+    color: colors.light,
     textTransform: "uppercase",
+    letterSpacing: 2,
   },
 });

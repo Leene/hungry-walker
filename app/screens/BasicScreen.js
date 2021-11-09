@@ -4,10 +4,11 @@ import {
   StyleSheet,
   View,
   Image,
-  Platform,
   Text,
   StatusBar,
   FlatList,
+  Pressable,
+  Platform,
   KeyboardAvoidingView,
 } from "react-native";
 import WelcomeScreen from "./WelcomeScreen";
@@ -15,7 +16,8 @@ import Welcome from "./Welcome";
 import Header from "./Header";
 import Navigation from "./Navigation";
 import ToDoItem from "./ToDoItem";
-import AddProduct from "./AddProduct";
+
+import ListDetailContent from "./ListDetailContent";
 
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
@@ -29,6 +31,7 @@ export default function BasicScreen() {
   ]);
 
   const [inputText, setInputText] = useState("");
+  const [headline, setHeadline] = useState("Meine Listen");
 
   const pressHandler = (key) => {
     setTodos((prevTodos) => {
@@ -45,36 +48,23 @@ export default function BasicScreen() {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.header}>
+        <View>
           <Header />
         </View>
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
         >
-          <View style={styles.navigation}>
-            <Text>navi </Text>
+          <View style={styles.headline}>
+            <Text style={styles.headlineText}>{headline}</Text>
+            <Pressable
+              style={[styles.addButton]}
+              onPress={() => submitHandler(inputText)}
+            >
+              <Text style={styles.addButtonText}>+</Text>
+            </Pressable>
           </View>
-
-          <View style={styles.main}>
-            <Text>Meine Einkaufsliste </Text>
-            <View style={styles.list}>
-              <FlatList
-                data={todos}
-                renderItem={({ item }) => (
-                  <ToDoItem item={item} pressHandler={pressHandler} />
-                )}
-              />
-            </View>
-          </View>
-
-          <View style={styles.bottomNav}>
-            <AddProduct
-              submitHandler={submitHandler}
-              inputText={inputText}
-              setInputText={setInputText}
-            />
-          </View>
+          <ListDetailContent />
         </KeyboardAvoidingView>
       </View>
     </>
@@ -83,13 +73,12 @@ export default function BasicScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    height:
-      Platform.OS === "android" ? vh(100) - StatusBar.currentHeight : vh(100),
-
+    height: vh(100),
+    /* height:
+      Platform.OS === "android" ? vh(100) - StatusBar.currentHeight : vh(100), */
+    backgroundColor: colors.secondary,
     flexDirection: "column",
     alignItems: "center",
-    borderWidth: 5,
-    borderColor: "orange",
   },
 
   list: {
@@ -97,36 +86,46 @@ const styles = StyleSheet.create({
     width: vw(90),
     margin: 20,
     padding: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 5,
   },
-  navigation: {
-    height: 50,
-    backgroundColor: "lightgreen",
+  headline: {
+    height: 100,
+    backgroundColor: colors.headlineBackground,
     width: vw(100),
+    paddingLeft: 30,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  },
+  headlineText: {
+    fontSize: 40,
+    fontWeight: "100",
+    color: colors.light,
+    textTransform: "uppercase",
   },
   main: {
     //flex: 1,
-    height: "75%",
+    height: "60%",
     backgroundColor: colors.mainBackground,
     width: vw(100),
     alignItems: "center",
   },
 
-  bottomNav: {
-    position: "absolute",
-    bottom: 0,
-    //flex: 1,
-    height: "20%",
-    width: vw(100),
+  addButton: {
+    height: 80,
+    width: 80,
+    //marginTop: -50,
+    //marginLeft: -50,
+    //marginBottom: -5,
+    borderTopLeftRadius: 80,
+    backgroundColor: colors.addButtonColor,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.mainBackground,
+  },
+
+  addButtonText: {
+    fontSize: 50,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "black",
   },
 });
