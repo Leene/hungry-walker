@@ -9,6 +9,9 @@ import {
   Pressable,
   KeyboardAvoidingView,
 } from "react-native";
+
+import colors from "../config/colors";
+
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
@@ -45,16 +48,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: vw(100),
     flexDirection: "row",
-    borderWidth: 2,
-    borderColor: "orange",
   },
   input: {
-    marginBottom: 10,
+    marginBottom: 30,
     paddingHorizontal: 8,
     paddingVertical: 6,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
-    backgroundColor: "pink",
+    //backgroundColor: "pink",
+    //backgroundColor: "rgba(171, 166, 159, 0.5)",
+    backgroundColor: colors.inputColor,
     width: vw(90),
     height: "100%",
   },
@@ -65,17 +66,17 @@ const styles = StyleSheet.create({
     marginTop: -50,
     marginLeft: -50,
     borderTopLeftRadius: 80,
-    backgroundColor: "pink",
+    backgroundColor: colors.inputButtonColor,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 5,
-    borderColor: "#999",
+    borderLeftWidth: 5,
+    borderColor: colors.mainBackground,
   },
 
   addButtonText: {
     fontSize: 50,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "black",
+    color: colors.buttonIcon,
   },
 });

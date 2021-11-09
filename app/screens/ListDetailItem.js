@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import colors from "../config/colors";
 
 export default function ListDetailItem({ item, pressHandler }) {
   //const { item, pressHandler } = props;
@@ -13,10 +14,10 @@ export default function ListDetailItem({ item, pressHandler }) {
 const styles = StyleSheet.create({
   item: {
     padding: 16,
-    marginTop: 16,
-    borderColor: "#bbb",
-    borderWidth: 1,
-    borderStyle: "dashed",
-    borderRadius: 10,
+    marginTop: 10,
+    borderBottomLeftRadius: 15,
+    borderTopRightRadius: 15,
+    backgroundColor: colors.ListDetailItemColor,
+    //fontWeight: "bold",
   },
 });

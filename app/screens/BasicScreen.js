@@ -45,6 +45,7 @@ export default function BasicScreen() {
       return [{ text: text, key: Math.random().toString() }, ...prevTodos];
     });
   };
+
   return (
     <>
       <View style={styles.container}>
@@ -64,7 +65,10 @@ export default function BasicScreen() {
               <Text style={styles.addButtonText}>+</Text>
             </Pressable>
           </View>
-          <ListDetailContent />
+          <ListDetailContent
+            headline={"Lebensmittel"}
+            setHeadline={setHeadline}
+          />
         </KeyboardAvoidingView>
       </View>
     </>

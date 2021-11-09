@@ -22,13 +22,20 @@ import AddProductForm from "./AddProductForm";
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 
-export default function ListDetailContent() {
+export default function ListDetailContent({ headline, setHeadline }) {
   const [todos, setTodos] = useState([
     { text: "kaufe Oliven", key: "1" },
     { text: "Programmiere fleißig", key: "2" },
     { text: "trinke einen Tee", key: "3" },
     { text: "gddgg ", key: "4" },
   ]);
+
+  function updateHeadline() {
+    //setHeadline("Neu");
+    setHeadline(headline);
+    return headline;
+  }
+  updateHeadline();
 
   const [inputText, setInputText] = useState("");
 
@@ -86,17 +93,16 @@ const styles = StyleSheet.create({
 
   list: {
     //flex: 1,
-    backgroundColor: "white",
     width: vw(90),
-    margin: 20,
+    margin: 10,
     padding: 10,
     height: "100%",
   },
 
   main: {
-    flex: 1,
-    //height: "100%",
-    height: vh(70),
+    //flex: 1,
+    height: "70%",
+    //height: vh(80),
     backgroundColor: colors.mainBackground,
     width: vw(100),
     alignItems: "center",
@@ -104,7 +110,6 @@ const styles = StyleSheet.create({
 
   bottomNav: {
     flex: 1,
-
     /* position: "absolute",
     bottom: 0, */
     height: 40,
