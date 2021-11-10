@@ -64,7 +64,8 @@ export default function ListItem({ item, pressHandler }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: vh(20),
+    height: vh(30),
+
     marginTop: 5,
     backgroundColor: colors.listItemColor,
     flexDirection: "row",
@@ -73,27 +74,30 @@ const styles = StyleSheet.create({
     flex: 1,
     height: vh(20),
     marginTop: 5,
-    paddingLeft: 20,
+    paddingLeft: 0,
+    marginLeft: -25,
   },
   productCounter: {
     fontSize: 18,
-    fontWeight: "light",
+    fontWeight: "100",
     color: colors.light,
     marginTop: 5,
     marginLeft: 10,
     paddingLeft: 5,
-
     textAlign: "right",
   },
   img: {
-    height: 150,
-    width: 150,
+    height: 120,
+    width: 120,
+    opacity: 0.6,
   },
   imgDeleteContainer: {
+    height: 48,
+    width: 48,
     padding: 8,
     backgroundColor: "rgba(255, 255, 255, 0.4)",
     backgroundColor: "rgba(51, 42, 30, 0.5)",
-    borderBottomRightRadius: 15,
+    borderBottomRightRadius: 40,
   },
   imgDelete: {
     height: 25,
@@ -102,8 +106,9 @@ const styles = StyleSheet.create({
   itemHeadline: {
     fontSize: 40,
     fontWeight: "100",
-    padding: 16,
-    marginTop: 10,
+    //paddingTop: 50,
+    paddingBottom: 10,
+    marginTop: 60,
 
     color: colors.light,
     borderBottomWidth: 1,

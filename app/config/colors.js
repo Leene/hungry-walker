@@ -24,6 +24,7 @@ export default {
 
   // helles Violet #ad94df
   listItemColor: "rgba(173, 148, 223, 1.0)",
+  addItemDraftColor: "#7128ad",
 
   // helles Violet #ad94df
   // warmes Grau: #aba69f

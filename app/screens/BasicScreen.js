@@ -86,12 +86,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  list: {
-    backgroundColor: "white",
-    width: vw(90),
-    margin: 20,
-    padding: 10,
-  },
   headline: {
     height: 100,
     backgroundColor: colors.headlineBackground,

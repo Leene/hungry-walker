@@ -96,9 +96,9 @@ const styles = StyleSheet.create({
 
   list: {
     //flex: 1,
-    width: vw(90),
+    width: vw(100),
     margin: 10,
-    padding: 10,
+    padding: 0,
     height: "100%",
   },
 
