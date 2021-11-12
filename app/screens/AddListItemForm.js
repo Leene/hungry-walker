@@ -9,6 +9,7 @@ import {
   TextInput,
   Pressable,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from "react-native";
 
 import colors from "../config/colors";
@@ -21,14 +22,32 @@ export default function AddListItemForm({
   inputText,
   setInputText,
 }) {
+  const [isVisible, setIsVisible] = useState("");
+
   const changeHandler = (val) => {
     setInputText(val);
   };
+  const toggleFormHandler = () => {
+    if (isVisible == "") {
+      setIsVisible("none");
+    } else {
+      setIsVisible("");
+    }
+
+    return console.log(isVisible);
+  };
 
   return (
-    <View>
-      <View>
-        <Text style={styles.formHeader}>Neu</Text>
+    <View style={styles.formContainer}>
+      <Pressable style={styles.formHeader} onPress={() => toggleFormHandler()}>
+        <Text>Neu</Text>
+      </Pressable>
+
+      <View
+        style={{
+          display: { isVisible },
+        }}
+      >
         <View style={styles.container}>
           {/*       <View style={styles.inputContainer}>
            */}
@@ -60,6 +79,7 @@ export default function AddListItemForm({
             <Text>Bild wählen ...</Text>
           </View>
         </View>
+
         <Button
           style={styles.AddListSubmitBtn}
           color={colors.addItemDraftColor}
@@ -78,10 +98,15 @@ export default function AddListItemForm({
 }
 
 const styles = StyleSheet.create({
+  /* formContainer: {
+    alignContent: "flex-end",
+  }, */
+  visibilityContainer: {},
   container: {
     height: vh(25),
     margin: 0,
     padding: 10,
+    borderWidth: 1,
 
     //backgroundColor: colors.inputColor,
 
@@ -95,7 +120,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 50,
     borderTopLeftRadius: 50,
     padding: 4,
-    height: "15%",
+    height: 30,
     textAlign: "center",
     fontWeight: "600",
     color: "white",
@@ -105,7 +130,7 @@ const styles = StyleSheet.create({
     height: 48,
     width: 48,
     padding: 8,
-    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    //backgroundColor: "rgba(255, 255, 255, 0.4)",
     backgroundColor: "rgba(51, 42, 30, 0.5)",
     borderBottomRightRadius: 40,
     marginTop: -10,

@@ -25,6 +25,9 @@ export default {
   // helles Violet #ad94df
   listItemColor: "rgba(173, 148, 223, 1.0)",
   addItemDraftColor: "#7128ad",
+  listFormHeader: "#ad94df",
+  //listFormBackground: "#fcf6ed",
+  listFormBackground: "rgb(235, 230, 221)",
 
   // helles Violet #ad94df
   // warmes Grau: #aba69f

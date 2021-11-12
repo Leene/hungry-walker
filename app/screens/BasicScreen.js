@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import {
-  ImageBackground,
   StyleSheet,
   View,
-  Image,
   Text,
-  StatusBar,
-  FlatList,
   Pressable,
   Platform,
   KeyboardAvoidingView,
 } from "react-native";
-import WelcomeScreen from "./WelcomeScreen";
-import Welcome from "./Welcome";
 import Header from "./Header";
-import Navigation from "./Navigation";
 
 import ListDetailContent from "./ListDetailContent";
 import ListContent from "./ListContent";
@@ -32,6 +25,7 @@ export default function BasicScreen() {
 
   const [inputText, setInputText] = useState("");
   const [headline, setHeadline] = useState("Meine Listen");
+  const [modalOpen, setModalOpen] = useState(false);
 
   const pressHandler = (key) => {
     setTodos((prevTodos) => {
@@ -60,7 +54,7 @@ export default function BasicScreen() {
             <Text style={styles.headlineText}>{headline}</Text>
             <Pressable
               style={[styles.addButton]}
-              onPress={() => submitHandler(inputText)}
+              onPress={() => setModalOpen(true)}
             >
               <Text style={styles.addButtonText}>+</Text>
             </Pressable>
@@ -69,7 +63,12 @@ export default function BasicScreen() {
             headline={"Lebensmittel"}
             setHeadline={setHeadline}
           /> */}
-          <ListContent headline={"Alle Listen"} setHeadline={setHeadline} />
+          <ListContent
+            headline={"Alle Listen"}
+            setHeadline={setHeadline}
+            modalOpen={modalOpen}
+            setModalOpen={setModalOpen}
+          />
         </KeyboardAvoidingView>
       </View>
     </>
@@ -102,7 +101,6 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   main: {
-    //flex: 1,
     height: "60%",
     backgroundColor: colors.mainBackground,
     width: vw(100),
@@ -112,9 +110,6 @@ const styles = StyleSheet.create({
   addButton: {
     height: 80,
     width: 80,
-    //marginTop: -50,
-    //marginLeft: -50,
-    //marginBottom: -5,
     paddingLeft: 20,
     borderTopLeftRadius: 80,
     backgroundColor: colors.addButtonColor,
