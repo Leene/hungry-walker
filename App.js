@@ -10,8 +10,9 @@ import {
 } from "react-native";
 import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
+import BasicScreen2 from "./app/screens/BasicScreen2";
 
-function openDatabase() {
+/* function openDatabase() {
   if (Platform.OS === "web") {
     return {
       transaction: () => {
@@ -26,9 +27,9 @@ function openDatabase() {
   return db;
 }
 
-const db = openDatabase();
+const db = openDatabase(); */
 
-function Items({ done: doneHeading, onPressItem }) {
+/*f unction Items({ done: doneHeading, onPressItem }) {
   const [items, setItems] = React.useState(null);
 
   React.useEffect(() => {
@@ -66,21 +67,21 @@ function Items({ done: doneHeading, onPressItem }) {
       ))}
     </View>
   );
-}
+} */
 
 export default function App() {
-  const [text, setText] = React.useState(null);
-  const [forceUpdate, forceUpdateId] = useForceUpdate();
+  /* const [text, setText] = React.useState(null);
+  const [forceUpdate, forceUpdateId] = useForceUpdate(); */
 
-  React.useEffect(() => {
+  /*  React.useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
         "create table if not exists items (id integer primary key not null, done int, value text);"
       );
     });
   }, []);
-
-  const add = (text) => {
+ */
+  /* const add = (text) => {
     // is text empty?
     if (text === null || text === "") {
       return false;
@@ -96,13 +97,13 @@ export default function App() {
       null,
       forceUpdate
     );
-  };
+  }; */
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>SQLite Example</Text>
+      {/*<Text style={styles.heading}>SQLite Example</Text>
 
-      {Platform.OS === "web" ? (
+        {Platform.OS === "web" ? (
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
@@ -155,7 +156,9 @@ export default function App() {
             />
           </ScrollView>
         </>
-      )}
+      )} */}
+
+      <BasicScreen2 />
     </View>
   );
 }
