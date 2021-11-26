@@ -11,6 +11,10 @@ import {
 import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
 import BasicScreen2 from "./app/screens/BasicScreen2";
+import BasicScreen from "./app/screens/BasicScreen";
+import ListDetailContent2 from "./app/screens/ListDetailContent2";
+
+import DropDownPicker from "react-native-dropdown-picker";
 
 /* function openDatabase() {
   if (Platform.OS === "web") {
@@ -158,15 +162,16 @@ export default function App() {
         </>
       )} */}
 
-      <BasicScreen2 />
+      {/* <BasicScreen2 /> */}
+      <ListDetailContent2 />
     </View>
   );
 }
 
-function useForceUpdate() {
+/* function useForceUpdate() {
   const [value, setValue] = useState(0);
   return [() => setValue(value + 1), value];
-}
+} */
 
 const styles = StyleSheet.create({
   container: {

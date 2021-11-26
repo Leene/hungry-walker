@@ -46,30 +46,30 @@ export default function BasicScreen() {
         <View>
           <Header />
         </View>
-        <KeyboardAvoidingView
+        {/*   <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : "height"}
           style={styles.container}
-        >
-          <View style={styles.headline}>
-            <Text style={styles.headlineText}>{headline}</Text>
-            <Pressable
-              style={[styles.addButton]}
-              onPress={() => setModalOpen(true)}
-            >
-              <Text style={styles.addButtonText}>+</Text>
-            </Pressable>
-          </View>
-          {/* <ListDetailContent
+        > */}
+        <View style={styles.headline}>
+          <Text style={styles.headlineText}>{headline}Basic1</Text>
+          <Pressable
+            style={[styles.addButton]}
+            onPress={() => setModalOpen(true)}
+          >
+            <Text style={styles.addButtonText}>+</Text>
+          </Pressable>
+        </View>
+        {/* <ListDetailContent
             headline={"Lebensmittel"}
             setHeadline={setHeadline}
           /> */}
-          <ListContent
-            headline={"Alle Listen"}
-            setHeadline={setHeadline}
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-          />
-        </KeyboardAvoidingView>
+        <ListContent
+          headline={"Alle Listen"}
+          setHeadline={setHeadline}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+        />
+        {/* </KeyboardAvoidingView> */}
       </View>
     </>
   );

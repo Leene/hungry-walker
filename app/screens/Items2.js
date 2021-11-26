@@ -11,12 +11,18 @@ import {
   ScrollView,
 } from "react-native";
 
+import colors from "../config/colors";
+
 import openDatabase from "./openDatabase";
 import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
 
-export default function Items2({ done: doneHeading, onPressItem, db }) {
+export default function Items2({ done: doneHeading, onPressItem, db, shop }) {
   const [items, setItems] = React.useState(null);
+
+  /* console.log("------1------");
+  console.log("Items2: ");
+  console.log(items); */
 
   React.useEffect(() => {
     db.transaction((tx) => {
@@ -28,7 +34,7 @@ export default function Items2({ done: doneHeading, onPressItem, db }) {
     });
   }, []);
 
-  const heading = doneHeading ? "Completed" : "Todo";
+  const heading = doneHeading ? "Gekauft" : "Einkaufen";
 
   if (items === null || items.length === 0) {
     return null;
@@ -36,26 +42,62 @@ export default function Items2({ done: doneHeading, onPressItem, db }) {
 
   return (
     <View style={styles.sectionContainer}>
-      <Text style={styles.sectionHeading}>{heading} Item</Text>
+      <Text style={styles.sectionHeading}>{heading}</Text>
+
       {items.map(({ id, done, value }) => (
-        <TouchableOpacity
-          key={id}
-          onPress={() => onPressItem && onPressItem(id)}
-          style={{
-            backgroundColor: done ? "#1c9963" : "#fff",
-            borderColor: "#000",
-            borderWidth: 1,
-            padding: 8,
-          }}
+        <View
+          style={[
+            styles.listDetailItem,
+            {
+              backgroundColor: done ? "#aaa" : colors.ListDetailItemColor,
+            },
+          ]}
         >
-          <Text style={{ color: done ? "#fff" : "#000" }}>{value}</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            key={id}
+            onPress={() => onPressItem && onPressItem(id)}
+            style={{
+              width: 30,
+              height: 30,
+              backgroundColor: done ? "#1c9963" : "orange",
+              borderColor: "#fff",
+              borderWidth: 3,
+              borderRadius: 20,
+              padding: 8,
+              marginTop: 8,
+            }}
+          ></TouchableOpacity>
+          <Text
+            style={{
+              width: "80%",
+              paddingLeft: 5,
+              paddingRight: 5,
+              marginLeft: 5,
+              marginRight: 5,
+              color: done ? "#fff" : "#000",
+            }}
+          >
+            {value}
+          </Text>
+          <Text style={{ color: done ? "#555" : "#999" }}>{shop} shop??</Text>
+        </View>
       ))}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  listDetailItem: {
+    padding: 16,
+    marginTop: 10,
+    borderBottomLeftRadius: 15,
+    borderTopRightRadius: 15,
+
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
   container: {
     backgroundColor: "#fff",
     flex: 1,

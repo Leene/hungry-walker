@@ -14,6 +14,7 @@ import {
   Button,
   Modal,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import ListDetailItem from "./ListDetailItem";
 import ListItem from "./ListItem";
@@ -64,6 +65,14 @@ export default function ListContent({
     <>
       <View style={styles.container}>
         <View style={styles.main}>
+          <ScrollView>
+            <TouchableOpacity key={id}>
+              <ListItem item={0} />
+              <Text /* style={{ color: done ? "#fff" : "#000" }} */>
+                {todos[0].text}
+              </Text>
+            </TouchableOpacity>
+          </ScrollView>
           <View style={styles.list}>
             <FlatList
               data={todos}

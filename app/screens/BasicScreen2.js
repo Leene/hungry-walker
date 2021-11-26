@@ -36,9 +36,11 @@ const db = openDatabase();
 
 ///// Items placeholder
 
-export default function App() {
+export default function BasicScreen2() {
   const [text, setText] = React.useState(null);
   const [forceUpdate, forceUpdateId] = useForceUpdate();
+  const [headline, setHeadline] = useState("Meine Listen");
+  const [modalOpen, setModalOpen] = useState(false);
 
   React.useEffect(() => {
     db.transaction((tx) => {
@@ -68,7 +70,19 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <View>
+        <Header />
+      </View>
       <Text style={styles.heading}>SQLite Example Basic2</Text>
+      <View style={styles.headline}>
+        <Text style={styles.headlineText}>{headline}</Text>
+        <Pressable
+          style={[styles.addButton]}
+          onPress={() => setModalOpen(true)}
+        >
+          <Text style={styles.addButtonText}>+</Text>
+        </Pressable>
+      </View>
 
       {Platform.OS === "web" ? (
         <View
@@ -80,19 +94,6 @@ export default function App() {
         </View>
       ) : (
         <>
-          <View style={styles.flexRow}>
-            <TextInput
-              onChangeText={(text) => setText(text)}
-              onSubmitEditing={() => {
-                add(text);
-                setText(null);
-              }}
-              placeholder="what do you need to do?"
-              style={styles.input}
-              value={text}
-            />
-          </View>
-
           <ScrollView style={styles.listArea}>
             <Items2
               db={openDatabase()}
@@ -125,6 +126,18 @@ export default function App() {
               }
             />
           </ScrollView>
+          <View style={styles.flexRow}>
+            <TextInput
+              onChangeText={(text) => setText(text)}
+              onSubmitEditing={() => {
+                add(text);
+                setText(null);
+              }}
+              placeholder="what do you need to do?"
+              style={styles.input}
+              value={text}
+            />
+          </View>
         </>
       )}
     </View>
@@ -137,6 +150,39 @@ function useForceUpdate() {
 }
 
 const styles = StyleSheet.create({
+  headline: {
+    height: 100,
+    backgroundColor: colors.headlineBackground,
+    width: vw(100),
+    paddingLeft: 30,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+  },
+  headlineText: {
+    fontSize: 35,
+    fontWeight: "100",
+    color: colors.light,
+    textTransform: "uppercase",
+  },
+
+  addButton: {
+    height: 80,
+    width: 80,
+    paddingLeft: 20,
+    borderTopLeftRadius: 80,
+    backgroundColor: colors.addButtonColor,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  addButtonText: {
+    fontSize: 50,
+    fontWeight: "bold",
+    letterSpacing: 0.25,
+    color: "black",
+  },
+
   container: {
     backgroundColor: "#fff",
     flex: 1,
