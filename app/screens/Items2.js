@@ -107,8 +107,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     //width: "100%",
-
-    borderWidth: 1,
   },
 
   container: {
@@ -139,8 +137,7 @@ const styles = StyleSheet.create({
     paddingTop: 16,
   },
   sectionContainer: {
-    marginBottom: 16,
-    marginHorizontal: 16,
+    margin: 16,
   },
   sectionHeading: {
     fontSize: 18,

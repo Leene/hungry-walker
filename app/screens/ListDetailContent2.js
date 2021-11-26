@@ -153,32 +153,6 @@ export default function ListDetailContent2() {
       <View>
         <Header />
       </View>
-      <View style={styles.headline}>
-        <Text style={styles.headlineText}>{headline} LDContent2</Text>
-        {/*  <Pressable
-          style={[styles.addButton]}
-          onPress={() => setModalOpen(true)}
-        >
-          <Text style={styles.addButtonText}>+</Text>
-        </Pressable> */}
-
-        <Pressable
-          style={{ backgroundColor: "#44bb54" }}
-          onPress={() => {
-            updateView(formData.title, formData.shop);
-          }}
-        >
-          <Text>Aktualisieren</Text>
-        </Pressable>
-        <Pressable
-          style={{ backgroundColor: "#bb44bb" }}
-          onPress={() => {
-            deletTable(formData.title, formData.shop);
-          }}
-        >
-          <Text>Tabelle löschen</Text>
-        </Pressable>
-      </View>
 
       {Platform.OS === "web" ? (
         <View
@@ -191,6 +165,32 @@ export default function ListDetailContent2() {
       ) : (
         <>
           <ScrollView style={styles.listArea}>
+            <View style={styles.headline}>
+              <Text style={styles.headlineText}>{headline} LDContent2</Text>
+              {/*  <Pressable
+          style={[styles.addButton]}
+          onPress={() => setModalOpen(true)}
+        >
+          <Text style={styles.addButtonText}>+</Text>
+        </Pressable> */}
+
+              <Pressable
+                style={{ backgroundColor: "#44bb54" }}
+                onPress={() => {
+                  updateView(formData.title, formData.shop);
+                }}
+              >
+                <Text>Aktualisieren</Text>
+              </Pressable>
+              <Pressable
+                style={{ backgroundColor: "#bb44bb" }}
+                onPress={() => {
+                  deletTable(formData.title, formData.shop);
+                }}
+              >
+                <Text>Tabelle löschen</Text>
+              </Pressable>
+            </View>
             <Items2
               shop={formData.shop}
               db={openDatabase()}
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
   listArea: {
     backgroundColor: "#f0f0f0",
     flex: 1,
-    paddingTop: 16,
+    // paddingTop: 16,
   },
   sectionContainer: {
     marginBottom: 16,
