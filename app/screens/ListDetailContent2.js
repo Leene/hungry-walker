@@ -163,15 +163,15 @@ export default function ListDetailContent2() {
         </Pressable> */}
 
         <Pressable
-          style={{ backgroundColor: "#123456" }}
+          style={{ backgroundColor: "#44bb54" }}
           onPress={() => {
             updateView(formData.title, formData.shop);
           }}
         >
-          <Text>Aktualisiern</Text>
+          <Text>Aktualisieren</Text>
         </Pressable>
         <Pressable
-          style={{ backgroundColor: "#987654" }}
+          style={{ backgroundColor: "#bb44bb" }}
           onPress={() => {
             deletTable(formData.title, formData.shop);
           }}
@@ -225,6 +225,7 @@ export default function ListDetailContent2() {
                 )
               }
             />
+            <View style={{ height: 60 }}></View>
           </ScrollView>
 
           <View style={styles.flexRow}>
@@ -265,15 +266,16 @@ export default function ListDetailContent2() {
                 })
               }
             >
-              <Picker.Item label="Aldi" value="aldi" />
-              <Picker.Item label="Budni" value="budni" />
-              <Picker.Item label="DM" value="dm" />
-              <Picker.Item label="Edeka" value="edeka" />
-              <Picker.Item label="Lidl" value="lidl" />
-              <Picker.Item label="Penny" value="penny" />
-              <Picker.Item label="REAL" value="real" />
-              <Picker.Item label="Rossmann" value="rossmann" />
-              <Picker.Item label="Rewe" value="rewe" />
+              <Picker.Item label="--Alle--" value="--Alle--" />
+              <Picker.Item label="Aldi" value="Aldi" />
+              <Picker.Item label="Budni" value="Budni" />
+              <Picker.Item label="DM" value="DM" />
+              <Picker.Item label="Edeka" value="Edeka" />
+              <Picker.Item label="Lidl" value="Lidl" />
+              <Picker.Item label="Penny" value="Penny" />
+              <Picker.Item label="Real" value="Real" />
+              <Picker.Item label="Rossmann" value="Rossmann" />
+              <Picker.Item label="Rewe" value="Rewe" />
             </Picker>
             {/*    <TextInput
               onChangeText={(text) => setWhichShop(text)}

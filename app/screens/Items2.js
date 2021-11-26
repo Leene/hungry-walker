@@ -44,7 +44,7 @@ export default function Items2({ done: doneHeading, onPressItem, db, shop }) {
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionHeading}>{heading}</Text>
 
-      {items.map(({ id, done, value }) => (
+      {items.map(({ id, done, value, shopbrand }) => (
         <View
           style={[
             styles.listDetailItem,
@@ -53,33 +53,41 @@ export default function Items2({ done: doneHeading, onPressItem, db, shop }) {
             },
           ]}
         >
-          <TouchableOpacity
-            key={id}
-            onPress={() => onPressItem && onPressItem(id)}
-            style={{
-              width: 30,
-              height: 30,
-              backgroundColor: done ? "#1c9963" : "orange",
-              borderColor: "#fff",
-              borderWidth: 3,
-              borderRadius: 20,
-              padding: 8,
-              marginTop: 8,
-            }}
-          ></TouchableOpacity>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <TouchableOpacity
+              key={id}
+              onPress={() => onPressItem && onPressItem(id)}
+              style={{
+                width: 30,
+                height: 30,
+                backgroundColor: done ? "#1c9963" : "orange",
+                borderColor: "#fff",
+                borderWidth: 3,
+                borderRadius: 20,
+                padding: 8,
+              }}
+            ></TouchableOpacity>
+            <Text
+              style={{
+                paddingLeft: 5,
+                paddingRight: 5,
+                marginLeft: 5,
+                marginRight: 5,
+                color: done ? "#fff" : "#000",
+                textAlign: "left",
+              }}
+            >
+              {value}
+            </Text>
+          </View>
           <Text
-            style={{
-              width: "80%",
-              paddingLeft: 5,
-              paddingRight: 5,
-              marginLeft: 5,
-              marginRight: 5,
-              color: done ? "#fff" : "#000",
-            }}
+            style={[
+              styles.shopText,
+              { color: done ? "#555" : "#999", textAlign: "right" },
+            ]}
           >
-            {value}
+            {shopbrand}
           </Text>
-          <Text style={{ color: done ? "#555" : "#999" }}>{shop} shop??</Text>
         </View>
       ))}
     </View>
@@ -87,8 +95,10 @@ export default function Items2({ done: doneHeading, onPressItem, db, shop }) {
 }
 
 const styles = StyleSheet.create({
+  shopText: {},
   listDetailItem: {
     padding: 16,
+    //paddingRight: 0,
     marginTop: 10,
     borderBottomLeftRadius: 15,
     borderTopRightRadius: 15,
@@ -96,6 +106,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    //width: "100%",
+
+    borderWidth: 1,
   },
 
   container: {
