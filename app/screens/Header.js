@@ -14,6 +14,13 @@ export default function Header() {
               uri: "https://img.icons8.com/ios-filled/100/ffffff/hungry.png",
             }}
           />
+          <Image
+            style={styles.headerLogo}
+            source={{
+              uri: "https://img.icons8.com/ios-filled/100/aa5896/grapes.png",
+            }}
+          />
+
           <Text style={styles.h1Title}>Hungry Walker</Text>
         </View>
       </View>

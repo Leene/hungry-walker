@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   ScrollView,
+  Image,
 } from "react-native";
 import Header from "./Header";
 
@@ -38,7 +39,7 @@ const db = openDatabase();
 
 ///// Items placeholder
 
-export default function ListDetailContent2() {
+export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
   const [text, setText] = React.useState(null);
   const [whichShop, setWhichShop] = React.useState(null);
   const [forceUpdate, forceUpdateId] = useForceUpdate();
@@ -150,8 +151,20 @@ export default function ListDetailContent2() {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Header />
+      <View style={styles.modalCloseButtonContainer2}>
+        <TouchableOpacity
+          style={styles.modalCloseButton2}
+          onPress={() => setModalOpen2(false)}
+        >
+          <Image
+            style={styles.backIcon}
+            source={{
+              uri: "https://img.icons8.com/android/96/ffffff/back.png",
+            }}
+          />
+
+          <Text style={styles.modalCloseButtonText2}>Zurück</Text>
+        </TouchableOpacity>
       </View>
 
       {Platform.OS === "web" ? (
@@ -311,6 +324,31 @@ function useForceUpdate() {
 }
 
 const styles = StyleSheet.create({
+  modalCloseButtonContainer2: {
+    //width: 200,
+  },
+
+  backIcon: {
+    //bis 96px
+    height: 25,
+    width: 25,
+    alignSelf: "center",
+  },
+  modalCloseButton2: {
+    backgroundColor: colors.headerBackground,
+    padding: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  modalCloseButtonText2: {
+    color: colors.light,
+    alignSelf: "center",
+    fontWeight: "300",
+    fontSize: 20,
+    textTransform: "uppercase",
+    paddingLeft: 8,
+  },
+
   headline: {
     height: 100,
     backgroundColor: colors.headlineBackground,
@@ -350,7 +388,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
+    //paddingTop: Constants.statusBarHeight,
   },
   heading: {
     fontSize: 20,

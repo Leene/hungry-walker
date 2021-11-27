@@ -162,8 +162,8 @@ export default function App() {
         </>
       )} */}
 
-      {/* <BasicScreen2 /> */}
-      <ListDetailContent2 />
+      <BasicScreen2 />
+      {/*  <ListDetailContent2 /> */}
     </View>
   );
 }

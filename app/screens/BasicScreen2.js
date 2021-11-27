@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   ScrollView,
+  Modal,
 } from "react-native";
 import Header from "./Header";
 
@@ -24,6 +25,7 @@ import * as SQLite from "expo-sqlite";
 import openDatabase from "./openDatabase";
 
 import Items2 from "./Items2";
+import ListDetailContent2 from "./ListDetailContent2";
 
 // Datenbank erzeugen
 // Relationen erzeugen
@@ -41,6 +43,7 @@ export default function BasicScreen2() {
   const [forceUpdate, forceUpdateId] = useForceUpdate();
   const [headline, setHeadline] = useState("Meine Listen");
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
 
   React.useEffect(() => {
     db.transaction((tx) => {
@@ -82,64 +85,33 @@ export default function BasicScreen2() {
         >
           <Text style={styles.addButtonText}>+</Text>
         </Pressable>
-      </View>
 
-      {Platform.OS === "web" ? (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        {/*///////2. Modal öffnen button*/}
+        <Pressable
+          style={[styles.addButton2]}
+          onPress={() => setModalOpen2(true)}
         >
-          <Text style={styles.heading}>
-            Expo SQlite is not supported on web!
-          </Text>
-        </View>
-      ) : (
-        <>
-          <ScrollView style={styles.listArea}>
-            <Items2
-              db={openDatabase()}
-              key={`forceupdate-todo-${forceUpdateId}`}
-              done={false}
-              onPressItem={(id) =>
-                db.transaction(
-                  (tx) => {
-                    tx.executeSql(`update items set done = 1 where id = ?;`, [
-                      id,
-                    ]);
-                  },
-                  null,
-                  forceUpdate
-                )
-              }
-            />
-            <Items2
-              db={openDatabase()}
-              done
-              key={`forceupdate-done-${forceUpdateId}`}
-              onPressItem={(id) =>
-                db.transaction(
-                  (tx) => {
-                    tx.executeSql(`delete from items where id = ?;`, [id]);
-                  },
-                  null,
-                  forceUpdate
-                )
-              }
-            />
-          </ScrollView>
-          <View style={styles.flexRow}>
-            <TextInput
-              onChangeText={(text) => setText(text)}
-              onSubmitEditing={() => {
-                add(text);
-                setText(null);
-              }}
-              placeholder="what do you need to do?"
-              style={styles.input}
-              value={text}
+          <Text style={styles.addButtonText}>+</Text>
+        </Pressable>
+      </View>
+      {/*///////Modales ANzeige von  ListenDetailseit*/}
+      <Modal
+        transparent={true}
+        backdropColor={"#235672"}
+        backdropOpacity={0.5}
+        visible={modalOpen2}
+        animationType="slide"
+      >
+        <View style={styles.modalContainer2}>
+          <View style={styles.modalMain}>
+            <ListDetailContent2
+              modalOpen2={modalOpen2}
+              setModalOpen2={setModalOpen2}
             />
           </View>
-        </>
-      )}
+        </View>
+      </Modal>
+      {/*  <ListDetailContent2 /> */}
     </View>
   );
 }
@@ -150,6 +122,14 @@ function useForceUpdate() {
 }
 
 const styles = StyleSheet.create({
+  modalContainer2: {
+    flex: 1,
+    alignItems: "center",
+  },
+  modalMain: {
+    backgroundColor: colors.listFormBackground,
+  },
+
   headline: {
     height: 100,
     backgroundColor: colors.headlineBackground,
@@ -164,6 +144,16 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     color: colors.light,
     textTransform: "uppercase",
+  },
+
+  addButton2: {
+    height: 80,
+    width: 80,
+    paddingLeft: 20,
+    borderTopLeftRadius: 80,
+    backgroundColor: "hotpink",
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   addButton: {
