@@ -9,11 +9,29 @@ export default function Header() {
       <View style={styles.header}>
         <View style={styles.row}>
           <Image
+            style={styles.logo}
+            source={require("../assets/img/HungryWalkerLogo_1color.png")}
+          />
+          {/*
+          <Image
+            style={styles.logo}
+            source={require("../assets/img/HungryWalkerLogo_2color.png")}
+          />
+           <Image
+            style={styles.logo}
+            source={require("../assets/img/HungryWalkerLogo_3color.png")}
+          />
+            <Image
+            style={styles.logo}
+            source={require("../assets/img/HungryWalkerLogo_fullcolor.png")}
+          /> */}
+          {/*   <Image
             style={styles.headerLogo}
             source={{
-              uri: "https://img.icons8.com/ios-filled/100/ffffff/hungry.png",
+              uri: "https://img.icons8.com/ios-filled/100/aa5896/grapes.png",
             }}
-          />
+          /> */}
+
           <Text style={styles.h1Title}>Hungry Walker</Text>
         </View>
       </View>
@@ -43,6 +61,11 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginRight: 8,
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    margin: 5,
   },
   h1Title: {
     fontSize: 22,

@@ -19,45 +19,84 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 import ListDetailItem from "./ListDetailItem";
 import AddProductForm from "./AddProductForm";
+import openDatabase from "./openDatabase";
 
 import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+const db = openDatabase();
 
-export default function ListItem({ item, pressHandler }) {
+export default function ListItem({
+  item,
+  deleteItemHandler,
+  modalOpen2,
+  setModalOpen2,
+  setListName,
+  listName,
+  listItemAmount,
+  setListItemAmount,
+}) {
   //export default function ListItem({ item }) {
-  const productAmount = 11;
+  ///const listItemAmount = 11;
 
-  //const { item, pressHandler } = props;
+  //const { item, deleteItemHandler } = props;
+  const updateDetailListHeadline = () => {
+    setModalOpen2(true);
+    setListName(item.text);
+  };
+  /// anzahl der DB einträge setListItemAmount
+  //SELECT COUNT(*) FROM items WHERE Listename;
+  /////////////////////////////////////////////////////////////////////////
+  /*   const amountOfProducts = () => {
+    // is text empty?
+
+    db.transaction((tx) => {
+      tx.executeSql(
+        //"select COUNT(*) from items",
+        "select COUNT(*) from items WHERE liste='Timo'",
+        [],
+        (_, { rows }) => console.log(JSON.stringify(rows))
+      );
+    }, null);
+    return console.log("Amount of products der liste" + "Listennamwe fehlt:");
+  };
+
+  //////////////////////
+  amountOfProducts(); */
+
+  // return console.log("listName:" + listName);
+
   return (
     <View>
       {/* <TouchableOpacity> */}
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => pressHandler(item.key)}>
-          <View style={styles.imgDeleteContainer}>
-            <Image
-              style={styles.imgDelete}
-              source={{
-                //uri: "https://img.icons8.com/material-rounded/96/332a1e/delete-forever.png",
-                uri: "https://img.icons8.com/material-rounded/96/ffffff/delete-forever.png",
-              }}
-            />
+      <TouchableOpacity onPress={() => updateDetailListHeadline()}>
+        <View style={styles.container}>
+          <TouchableOpacity onPress={() => deleteItemHandler(item.key)}>
+            <View style={styles.imgDeleteContainer}>
+              <Image
+                style={styles.imgDelete}
+                source={{
+                  //uri: "https://img.icons8.com/material-rounded/96/332a1e/delete-forever.png",
+                  uri: "https://img.icons8.com/material-rounded/96/ffffff/delete-forever.png",
+                }}
+              />
+            </View>
+          </TouchableOpacity>
+          {/*   <Text style={styles.item}>{item.text}</Text> */}
+          <View style={styles.containerText}>
+            <Text style={styles.itemHeadline}>{item.text}</Text>
+            <Text style={styles.productCounter}>
+              {listItemAmount} Eintrag/-träge
+            </Text>
           </View>
-        </TouchableOpacity>
-        {/*   <Text style={styles.item}>{item.text}</Text> */}
-        <View style={styles.containerText}>
-          <Text style={styles.itemHeadline}>{item.text}</Text>
-          <Text style={styles.productCounter}>
-            {productAmount} Eintrag/-träge
-          </Text>
-        </View>
 
-        <Image
-          style={styles.img}
-          source={{
-            uri: "https://img.icons8.com/ios-filled/100/ffffff/hungry.png",
-          }}
-        />
-      </View>
+          <Image
+            style={styles.img}
+            source={{
+              uri: "https://img.icons8.com/ios-filled/100/ffffff/hungry.png",
+            }}
+          />
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
