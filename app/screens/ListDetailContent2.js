@@ -39,13 +39,23 @@ const db = openDatabase();
 
 ///// Items placeholder
 
-export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
+export default function ListDetailContent2({
+  modalOpen2,
+  setModalOpen2,
+  headline,
+  setHeadline,
+  listName,
+  setListName,
+  listItemAmount,
+  setListItemAmount,
+}) {
   const [text, setText] = React.useState(null);
   const [whichShop, setWhichShop] = React.useState(null);
   const [forceUpdate, forceUpdateId] = useForceUpdate();
-  const [headline, setHeadline] = useState("Meine Listen");
+
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("java");
+
   const [formData, setFormData] = useState({
     done: 0,
     title: "leer",
@@ -59,7 +69,8 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
     db.transaction((tx) => {
       tx.executeSql(
         //"create table if not exists items (id INTEGER PRIMARY KEY NOT NULL, done INT, value TEXT);"
-        "create table if not exists items (id INTEGER PRIMARY KEY NOT NULL, done INT, value TEXT, shopbrand TEXT);"
+        //"create table if not exists items (id INTEGER PRIMARY KEY NOT NULL, done INT, value TEXT, shopbrand TEXT);"
+        "create table if not exists items (id INTEGER PRIMARY KEY NOT NULL, done INT, value TEXT, shopbrand TEXT, liste TEXT);"
       );
     });
   }, []);
@@ -92,8 +103,11 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
     db.transaction(
       (tx) => {
         tx.executeSql(
-          "insert into items (done, value, shopbrand) values (0, ?, ?)",
-          [text, shop]
+          //"insert into items (done, value, shopbrand) values (0, ?, ?)",
+          "insert into items (done, value, shopbrand, liste) values (0, ?, ?, ?)",
+          [text, shop, listName]
+          //[text, shop]
+
           //"insert into items (done, value) values (0, 'Kafka'), (0, 'Franz')",
         );
         tx.executeSql("select * from items", [], (_, { rows }) =>
@@ -109,6 +123,7 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
     console.log("ADDText:" + text);
     console.log("ADDshop:" + shop);
     // is text empty?
+
     db.transaction(
       (tx) => {
         //tx.executeSql("delete * from items");
@@ -126,6 +141,7 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
     console.log("ADDText:" + text);
     console.log("ADDshop:" + shop);
     // is text empty?
+
     db.transaction(
       (tx) => {
         tx.executeSql(`drop table items`);
@@ -179,7 +195,8 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
         <>
           <ScrollView style={styles.listArea}>
             <View style={styles.headline}>
-              <Text style={styles.headlineText}>{headline} LDContent2</Text>
+              <Text style={styles.headlineText}>{listName}</Text>
+
               {/*  <Pressable
           style={[styles.addButton]}
           onPress={() => setModalOpen(true)}
@@ -205,6 +222,10 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
               </Pressable>
             </View>
             <Items2
+              listItemAmount={listItemAmount}
+              setListItemAmount={setListItemAmount}
+              listName={listName}
+              setListName={setListName}
               shop={formData.shop}
               db={openDatabase()}
               key={`forceupdate-todo-${forceUpdateId}`}
@@ -222,6 +243,8 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
               }
             />
             <Items2
+              listName={listName}
+              setListName={setListName}
               shop={formData.shop}
               db={openDatabase()}
               done
@@ -229,7 +252,7 @@ export default function ListDetailContent2({ modalOpen2, setModalOpen2 }) {
               onPressItem={(id) =>
                 db.transaction(
                   (tx) => {
-                    tx.executeSql(`delete from items where id = 37;`);
+                    // tx.executeSql(`delete from items where id = 37;`);
                     tx.executeSql(`delete from items where id = ?;`, [id]);
                     //tx.executeSql(`delete * from items where done = 1`);
                   },

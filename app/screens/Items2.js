@@ -17,8 +17,19 @@ import openDatabase from "./openDatabase";
 import Constants from "expo-constants";
 import * as SQLite from "expo-sqlite";
 
-export default function Items2({ done: doneHeading, onPressItem, db, shop }) {
+export default function Items2({
+  done: doneHeading,
+  onPressItem,
+  db,
+  shop,
+  listName,
+  setListName,
+  listItemAmount,
+  setListItemAmount,
+}) {
   const [items, setItems] = React.useState(null);
+  /*  console.log("Items: ");
+  console.log(items + "Laenge: " + items.length); */
 
   /* console.log("------1------");
   console.log("Items2: ");
@@ -27,7 +38,9 @@ export default function Items2({ done: doneHeading, onPressItem, db, shop }) {
   React.useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        `select * from items where done = ?;`,
+        `select * from items where done = ? AND liste = "${listName}";`,
+        //`select * from items where done = ? AND liste = 'Bernd';`,
+        //`select * from items where done = ?;`,
         [doneHeading ? 1 : 0],
         (_, { rows: { _array } }) => setItems(_array)
       );
@@ -36,15 +49,25 @@ export default function Items2({ done: doneHeading, onPressItem, db, shop }) {
 
   const heading = doneHeading ? "Gekauft" : "Einkaufen";
 
+  const updateListItemAmount = () => {
+    setListItemAmount(listItemAmount++);
+
+    return console.log("listItemAmounte: " + listItemAmount);
+  };
+
+  //>>>>>>>>>>>><{updateListItemAmount()}
+  ////////////////
   if (items === null || items.length === 0) {
     return null;
   }
-
+  /*   console.log("Länge" + items.length);
+  setListItemAmount(items.length);
+  updateListItemAmount(); */
   return (
     <View style={styles.sectionContainer}>
       <Text style={styles.sectionHeading}>{heading}</Text>
 
-      {items.map(({ id, done, value, shopbrand }) => (
+      {items.map(({ id, done, value, shopbrand, liste }) => (
         <View
           style={[
             styles.listDetailItem,

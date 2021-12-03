@@ -29,6 +29,12 @@ export default function ListContent({
   setHeadline,
   modalOpen,
   setModalOpen,
+  modalOpen2,
+  setModalOpen2,
+  setListName,
+  listName,
+  listItemAmount,
+  setListItemAmount,
 }) {
   const [todos, setTodos] = useState([
     { text: "Lebensmittel", key: "1" },
@@ -49,7 +55,12 @@ export default function ListContent({
     setInputText(val);
   };
 
-  const pressHandler = (key) => {
+  const deleteItemHandler = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.key != key);
+    });
+  };
+  const openDetailList = (key) => {
     setTodos((prevTodos) => {
       return prevTodos.filter((todo) => todo.key != key);
     });
@@ -65,19 +76,22 @@ export default function ListContent({
     <>
       <View style={styles.container}>
         <View style={styles.main}>
-          <ScrollView>
-            <TouchableOpacity key={id}>
-              <ListItem item={0} />
-              <Text /* style={{ color: done ? "#fff" : "#000" }} */>
-                {todos[0].text}
-              </Text>
-            </TouchableOpacity>
-          </ScrollView>
           <View style={styles.list}>
+            <Text>ListContent.js</Text>
             <FlatList
               data={todos}
               renderItem={({ item }) => (
-                <ListItem item={item} pressHandler={pressHandler} />
+                <ListItem
+                  item={item}
+                  deleteItemHandler={deleteItemHandler}
+                  modalOpen2={modalOpen2}
+                  setModalOpen2={setModalOpen2}
+                  setListName={setListName}
+                  listName={listName}
+                  listItemAmount={listItemAmount}
+                  setListItemAmount={setListItemAmount}
+                />
+                /*  (<ListItem item={item} />) */
               )}
             />
           </View>
