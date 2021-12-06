@@ -1,17 +1,4 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Pressable,
-  TextInput,
-  Platform,
-  KeyboardAvoidingView,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
-
-import Constants from "expo-constants";
+import { Platform } from "react-native";
 import * as SQLite from "expo-sqlite";
 
 export default function openDatabase() {
