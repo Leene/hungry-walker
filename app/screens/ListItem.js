@@ -3,6 +3,7 @@ import { StyleSheet, View, Image, Text, TouchableOpacity } from "react-native";
 import openDatabase from "./openDatabase";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
 import colors from "../config/colors";
+import { ReloadInstructions } from "react-native/Libraries/NewAppScreen";
 
 const db = openDatabase();
 
@@ -40,9 +41,7 @@ export default function ListItem({
           </View>
           <Image
             style={styles.img}
-            source={{
-              uri: "https://img.icons8.com/ios-filled/100/ffffff/hungry.png",
-            }}
+            source={require("../assets/img/HungryWalkerLogo_fullcolor3.png")}
           />
         </View>
       </TouchableOpacity>
@@ -94,8 +93,11 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   img: {
-    height: 120,
-    width: 120,
-    opacity: 0.6,
+    height: 150,
+    width: 150,
+    marginTop: 15,
+    marginLeft: -20,
+    opacity: 1.0,
+    transform: [{ rotate: "20deg" }],
   },
 });

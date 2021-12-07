@@ -42,7 +42,9 @@ export default function ProductItem({
           style={[
             styles.listDetailItem,
             {
-              backgroundColor: done ? "#aaa" : colors.ListDetailItemColor,
+              backgroundColor: done
+                ? colors.listItemBackgroundColor
+                : colors.listDetailItemColor,
             },
           ]}
         >
@@ -54,7 +56,10 @@ export default function ProductItem({
                 width: 30,
                 height: 30,
                 padding: 8,
-                backgroundColor: done ? "#1c9963" : "orange",
+                // backgroundColor: done ? "#1c9963" : "orange",
+                backgroundColor: done
+                  ? colors.listItemBulletColor_done
+                  : colors.listItemBulletColor_active,
                 borderWidth: 3,
                 borderColor: "#fff",
                 borderRadius: 20,
