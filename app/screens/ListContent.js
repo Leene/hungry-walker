@@ -95,7 +95,12 @@ export default function ListContent({
                 />
                 <Text style={styles.productDraftCounter}>0 Einträge</Text>
               </View>
-              <View style={styles.imgDraftContainer}>
+
+              <Image
+                style={styles.draftLogo}
+                source={require("../assets/img/HungryWalkerLogo_1color.png")}
+              />
+              {/*   <View style={styles.imgDraftContainer}>
                 <Image
                   style={styles.imgDraft}
                   source={{
@@ -103,7 +108,7 @@ export default function ListContent({
                   }}
                 />
                 <Text>Bild wählen ...</Text>
-              </View>
+              </View> */}
             </View>
             <View style={styles.modalSubmitButtonContainer}>
               <Button
@@ -188,6 +193,12 @@ const styles = StyleSheet.create({
     opacity: 0.8,
   },
 
+  draftLogo: {
+    height: 150,
+    width: 150,
+    opacity: 0.5,
+    transform: [{ rotate: "20deg" }],
+  },
   imgDraftContainer: {
     justifyContent: "space-evenly",
     alignItems: "center",
