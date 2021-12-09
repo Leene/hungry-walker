@@ -21,7 +21,7 @@ Main technology is React Native. In detail you find the usage of:
  ## Screenshots
  |          Main list view           |        Modal dialog of main list           |       Product list view          |
 | :----------------------------: | :------------------------------: | :------------------: |
-| ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot1.png) | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot1.png)  | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot3.png) |
+| ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot1.png) | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot2.png)  | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot3.png) |
 
 hungry-walker\app\assets\finishedAppScreenShots
 
