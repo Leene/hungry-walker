@@ -19,9 +19,9 @@ Main technology is React Native. In detail you find the usage of:
  - Expo as framework/platform to test the app on devices
 
  ## Screenshots
- |          Start area           |             In game view              |       Game Over          |
+ |          Main list view           |        Modal dialog of main list           |       Product list view          |
 | :----------------------------: | :------------------------------: | :------------------: |
-| ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot1.png) | ![](./public/screenshots_finishedApp/ingame_view.png)  | ![](./public/screenshots_finishedApp/GameOverDialog.png) |
+| ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot1.png) | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot1.png)  | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot3.png) |
 
 hungry-walker\app\assets\finishedAppScreenShots
 
