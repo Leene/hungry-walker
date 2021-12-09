@@ -26,10 +26,6 @@ Main technology is React Native. In detail you find the usage of:
 | :----------------------------: | :------------------------------: | :------------------: |
 | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot1.png) | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot2.png)  | ![](./app/assets/finishedAppScreenShots/HungryWalkerScreenshot3.png) |
 
-hungry-walker\app\assets\finishedAppScreenShots
-
-![](./img/screenshots_finishedApp/startArea.png) 
-
 ## Planned Improvements
 - Push-up notifications when user is close to specific shop
 - Map where you can see where the shop exactly is
