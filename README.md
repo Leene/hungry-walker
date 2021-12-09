@@ -1,4 +1,4 @@
-# hungry-walker
+# HungryWalker
 This CRUD-App is a shopping list, where you can organize multiple lists and attach your prefered local shops to the list items.
 
 ## The Idea
