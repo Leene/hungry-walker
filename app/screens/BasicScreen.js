@@ -4,123 +4,120 @@ import {
   View,
   Text,
   Pressable,
-  Platform,
-  KeyboardAvoidingView,
+  Modal,
+  ScrollView,
 } from "react-native";
-import Header from "./Header";
-
-import ListDetailContent from "./ListDetailContent";
-import ListContent from "./ListContent";
-
-import colors from "../config/colors";
 import { vw, vh, vmin, vmax } from "react-native-expo-viewport-units";
+import Constants from "expo-constants";
+import openDatabase from "./openDatabase";
+import colors from "../config/colors";
+import Header from "./Header";
+import ListContent from "./ListContent";
+import ListDetailContent from "./ListDetailContent";
 
-export default function BasicScreen() {
-  const [todos, setTodos] = useState([
-    { text: "kaufe Oliven", key: "1" },
-    { text: "Programmiere fleißig", key: "2" },
-    { text: "trinke einen Tee", key: "3" },
-    { text: "gddgg ", key: "4" },
-  ]);
+const db = openDatabase();
 
-  const [inputText, setInputText] = useState("");
+export default function BasicScreen2() {
   const [headline, setHeadline] = useState("Meine Listen");
+  const [listName, setListName] = useState("Listenname");
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
+  const [listItemAmount, setListItemAmount] = useState("XX");
 
-  const pressHandler = (key) => {
-    setTodos((prevTodos) => {
-      return prevTodos.filter((todo) => todo.key != key);
+  React.useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "create table if not exists items (id integer primary key not null, done int, value text);"
+      );
     });
-  };
-
-  const submitHandler = (text) => {
-    setInputText("");
-    setTodos((prevTodos) => {
-      return [{ text: text, key: Math.random().toString() }, ...prevTodos];
-    });
-  };
+  }, []);
 
   return (
-    <>
-      <View style={styles.container}>
-        <View>
-          <Header />
-        </View>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.container}
-        >
-          <View style={styles.headline}>
-            <Text style={styles.headlineText}>{headline}</Text>
-            <Pressable
-              style={[styles.addButton]}
-              onPress={() => setModalOpen(true)}
-            >
-              <Text style={styles.addButtonText}>+</Text>
-            </Pressable>
-          </View>
-          {/* <ListDetailContent
-            headline={"Lebensmittel"}
-            setHeadline={setHeadline}
-          /> */}
-          <ListContent
-            headline={"Alle Listen"}
-            setHeadline={setHeadline}
-            modalOpen={modalOpen}
-            setModalOpen={setModalOpen}
-          />
-        </KeyboardAvoidingView>
+    <View style={styles.container}>
+      <View>
+        <Header />
       </View>
-    </>
+      <ScrollView>
+        <View style={styles.headline}>
+          <Text style={styles.headlineText}>{headline}</Text>
+          <Pressable
+            style={[styles.addButton]}
+            onPress={() => setModalOpen(true)}
+          >
+            <Text style={styles.addButtonText}>+</Text>
+          </Pressable>
+        </View>
+        <Modal
+          transparent={true}
+          backdropColor={"#235672"}
+          backdropOpacity={0.5}
+          visible={modalOpen2}
+          animationType="slide"
+        >
+          <View style={styles.modalContainerDetailList}>
+            <View>
+              <ListDetailContent
+                listName={listName}
+                setListName={setListName}
+                headline={headline}
+                setHeadline={setHeadline}
+                setModalOpen2={setModalOpen2}
+              />
+            </View>
+          </View>
+        </Modal>
+        <ListContent
+          listItemAmount={listItemAmount}
+          headline={headline}
+          setHeadline={setHeadline}
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          setModalOpen2={setModalOpen2}
+          setListName={setListName}
+        />
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    height: vh(100),
-    /* height:
-      Platform.OS === "android" ? vh(100) - StatusBar.currentHeight : vh(100), */
-    backgroundColor: colors.secondary,
-    flexDirection: "column",
-    alignItems: "center",
+    flex: 1,
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: "#fff",
   },
-
   headline: {
-    height: 100,
-    backgroundColor: colors.headlineBackground,
-    width: vw(100),
-    paddingLeft: 30,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-end",
+    height: 100,
+    width: vw(100),
+    paddingLeft: 30,
+    backgroundColor: colors.headlineBackground,
   },
   headlineText: {
+    textTransform: "uppercase",
     fontSize: 35,
     fontWeight: "100",
     color: colors.light,
-    textTransform: "uppercase",
   },
-  main: {
-    height: "60%",
-    backgroundColor: colors.mainBackground,
-    width: vw(100),
-    alignItems: "center",
-  },
-
   addButton: {
+    justifyContent: "center",
+    alignItems: "center",
     height: 80,
     width: 80,
     paddingLeft: 20,
-    borderTopLeftRadius: 80,
     backgroundColor: colors.addButtonColor,
-    alignItems: "center",
-    justifyContent: "center",
+    borderTopLeftRadius: 80,
   },
-
   addButtonText: {
     fontSize: 50,
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "black",
+  },
+  modalContainerDetailList: {
+    flex: 1,
+    alignItems: "center",
   },
 });

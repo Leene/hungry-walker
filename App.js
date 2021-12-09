@@ -1,26 +1,19 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  Platform,
-  StatusBar,
-  KeyboardAvoidingView,
-} from "react-native";
+import { StyleSheet, View } from "react-native";
 import BasicScreen from "./app/screens/BasicScreen";
-/* import ListTile from "./app/screens/ListTile";
- */
+
 export default function App() {
   return (
-    <SafeAreaView
-      style={{
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-      }}
-    >
+    <View style={styles.container}>
       <BasicScreen />
-
-      {/*  <ListTile /> */}
-    </SafeAreaView>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    //paddingTop: Constants.statusBarHeight,
+  },
+});
