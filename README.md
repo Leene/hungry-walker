@@ -31,7 +31,7 @@ hungry-walker\app\assets\finishedAppScreenShots
 ![](./img/screenshots_finishedApp/startArea.png) 
 
 ## Planned Improvements
-- Push-up notifications when User is close to specific shop
+- Push-up notifications when user is close to specific shop
 - Map where you can see where the shop exactly is
 
 
