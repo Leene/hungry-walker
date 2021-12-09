@@ -18,7 +18,7 @@ attach a prefered shop to every product entry you add.)
 
 Main technology is React Native. In detail you find the usage of: 
  - Functional programming as basic concept
- - SQLite as persistent local Storage
+ - SQLite as persistent local storage
  - Expo as framework/platform to test the app on devices
 
  ## Screenshots
