@@ -18,11 +18,11 @@ import ListDetailContent from "./ListDetailContent";
 const db = openDatabase();
 
 export default function BasicScreen2() {
-  const [headline, setHeadline] = useState("Meine Listen?");
+  const [headline, setHeadline] = useState("Meine Listen");
   const [listName, setListName] = useState("Listenname");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
-  const [listItemAmount, setListItemAmount] = useState(100);
+  const [listItemAmount, setListItemAmount] = useState("XX");
 
   React.useEffect(() => {
     db.transaction((tx) => {

@@ -35,9 +35,9 @@ export default function ListItem({
           </TouchableOpacity>
           <View style={styles.containerText}>
             <Text style={styles.itemHeadline}>{item.text}</Text>
-            <Text style={styles.productCounter}>
+            {/* <Text style={styles.productCounter}>
               {listItemAmount} Eintrag/-träge
-            </Text>
+            </Text> */}
           </View>
           <Image
             style={styles.img}

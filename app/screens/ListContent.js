@@ -93,7 +93,7 @@ export default function ListContent({
                   onChangeText={changeHandler}
                   value={inputText}
                 />
-                <Text style={styles.productDraftCounter}>0 Einträge</Text>
+                {/*              <Text style={styles.productDraftCounter}>0 Einträge</Text> */}
               </View>
 
               <Image
@@ -196,6 +196,7 @@ const styles = StyleSheet.create({
   draftLogo: {
     height: 150,
     width: 150,
+    marginLeft: -30,
     opacity: 0.5,
     transform: [{ rotate: "20deg" }],
   },

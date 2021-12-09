@@ -12,7 +12,8 @@ export default {
   listItemColor: "rgba( 102, 51, 153, 0.4)", // rebeccapurple
   listFormHeader: "darkcyan",
   listItemBulletColor_active: "orchid",
-  listItemBulletColor_done: "mediumaquamarine",
+  listItemBulletColor_done: "darkseagreen",
+  //listItemBulletColor_done: "mediumaquamarine",
   listItemBackgroundColor: "silver",
 
   listFormBackground: "silver",
