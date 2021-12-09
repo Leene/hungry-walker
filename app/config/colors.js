@@ -1,36 +1,20 @@
 export default {
-  primary: "#fc5c65",
-  //secondary: "#fcf2e3",
+  primary: "#332a1e", //button "Bestätigen"
 
-  secondary: "#f6c3a6",
-  headlineBackground: "#f6c3a6",
+  headerBackground: "#332a1e", //dark chocolate brown
+  headlineBackground: "darkseagreen",
 
-  light: "#ffffff",
-  violet: "#ff00ff",
+  light: "#ffffff", // font color
+  addButtonColor: "darkcyan",
+  inputColor: "rgba(192, 192, 192, 0.5)", //silver
 
-  mainBackground: "#fcf6ed", // Dunkelbraun: rgb: 51, 42, 30
-  headerBackground: "#332a1e",
-  buttonIcon: "#332a1e",
-  //headlineBackground: "#ad94df",
-  //headerBackground: "#aba69f",
+  listDetailItemColor: "rgba(102, 51, 153, 0.1)", //rebeccapurple
+  listItemColor: "rgba( 102, 51, 153, 0.4)", // rebeccapurple
+  listFormHeader: "darkcyan",
+  listItemBulletColor_active: "orchid",
+  listItemBulletColor_done: "darkseagreen",
+  //listItemBulletColor_done: "mediumaquamarine",
+  listItemBackgroundColor: "silver",
 
-  // warmes Grau: #aba69f/ rgb: 171, 166, 159,
-  addButtonColor: "#aba69f",
-  listItemBorder: "#aba69f",
-  //inputColor: "#aba69f",
-  inputColor: "rgba(171, 166, 159, 0.5)",
-  ListDetailItemColor: "rgba(171, 166, 159, 0.2)",
-  inputButtonColor: "rgba(171, 166, 159, 1.0)",
-
-  // helles Violet #ad94df
-  listItemColor: "rgba(173, 148, 223, 1.0)",
-  addItemDraftColor: "#7128ad",
-  listFormHeader: "#ad94df",
-  //listFormBackground: "#fcf6ed",
-  listFormBackground: "rgb(235, 230, 221)",
-
-  // helles Violet #ad94df
-  // warmes Grau: #aba69f
-  //flieder: #ad94df
-  //lachs: #f6c3a6
+  listFormBackground: "silver",
 };
