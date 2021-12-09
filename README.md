@@ -1,4 +1,4 @@
-# HungryWalker
+# Hungry Walker
 This CRUD-App is a shopping list, where you can organize multiple lists and attach your prefered local shops to the list items.
 
 ## The Idea
@@ -9,7 +9,7 @@ More than one time I came home and noticed I should have bought something. Noodl
 - when I am close to that prefered shop and 
 - reminds me of buying it with an push-up notification. 
 
-So the idea of HungryWalker was born. A shopping list app for people with after-work-zombie-brains like mine ;-).
+So the idea of Hungry Walker was born. A shopping list app for people with after-work-zombie-brains like mine ;-).
 
 (Notice: So far not every mentioned functionality is already implemented. At the moment you can just create multiple shopping lists and 
 attach a prefered shop to every product entry you add.)
