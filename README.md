@@ -21,8 +21,9 @@ Main technology is React Native. In detail you find the usage of:
  ## Screenshots
  |          Start area           |             In game view              |       Game Over          |
 | :----------------------------: | :------------------------------: | :------------------: |
-| ![](./public/screenshots_finishedApp/startArea.png) | ![](./public/screenshots_finishedApp/ingame_view.png)  | ![](./public/screenshots_finishedApp/GameOverDialog.png) |
+| ![](./assets/finishedAppScreenShots/HungryWalkerScreenshot1.png) | ![](./public/screenshots_finishedApp/ingame_view.png)  | ![](./public/screenshots_finishedApp/GameOverDialog.png) |
 
+hungry-walker\app\assets\finishedAppScreenShots
 
 ![](./img/screenshots_finishedApp/startArea.png) 
 
