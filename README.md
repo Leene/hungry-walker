@@ -1,3 +1,12 @@
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+
+
 <div background="black" > möp</div>
 # Hungry Walker
 This CRUD-App is a shopping list, where you can organize multiple lists and attach your prefered local shops to the list items.
