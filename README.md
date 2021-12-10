@@ -1,20 +1,3 @@
-- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `#f03c15`
-- ![#c5f015](https://via.placeholder.com/15/c5f015/000000?text=+) `#c5f015`
-- ![#1589F0](https://via.placeholder.com/15/1589F0/000000?text=+) `#1589F0`
-
-https://placehold.it/150/ffffff/ff0000?text=hello
-
-```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
-<div style="color: green">
-  ggdg  fgfg
-</div>
-
 # Hungry Walker
 This CRUD-App is a shopping list, where you can organize multiple lists and attach your prefered local shops to the list items.
 
