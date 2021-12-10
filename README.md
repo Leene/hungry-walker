@@ -9,9 +9,10 @@
 # text in gray
 @@ text in purple (and bold)@@
 ```
+<div class="bg-gray">
+  .text-gray-dark on .bg-gray
+</div>
 
-
-<div background="black" > möp</div>
 # Hungry Walker
 This CRUD-App is a shopping list, where you can organize multiple lists and attach your prefered local shops to the list items.
 
