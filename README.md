@@ -9,8 +9,8 @@
 # text in gray
 @@ text in purple (and bold)@@
 ```
-<div class="bg-gray">
-  .text-gray-dark on .bg-gray
+<div style="color: green">
+  ggdg  fgfg
 </div>
 
 # Hungry Walker
