@@ -7,7 +7,7 @@ More than one time I came home and noticed I should have bought something. Noodl
 10 minutes ago I was passing by somes shops, but had not thought of it. I wished there would be a shopping list app, which: 
 - knows where I want to buy a specific item,
 - when I am close to that prefered shop and 
-- reminds me of buying it with an push-up notification. 
+- reminds me of buying it with a push notification. 
 
 So the idea of Hungry Walker was born. A shopping list app for people with after-work-zombie-brains like mine ;-).
 
